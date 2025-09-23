@@ -9,13 +9,21 @@
 }
 
 *{box-sizing:border-box}
-html,body{height:100%}
+html,body{
+    height:100% ;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
 body{
     margin:0;
     font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     color:var(--text);
     background:var(--surface);
 }
+
 
 /* Layout helpers */
 .container{
@@ -24,43 +32,14 @@ body{
     padding-inline:16px;
 }
 
-/* Topbar */
-.topbar{
-    background:#fff;
-    border-bottom:1px solid var(--line);
-}
-.topbar .container{
-    height:64px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:16px;
-}
-.brand{display:flex; align-items:center; gap:10px}
-.brand-name{font-weight:600}
-.logo{display:block}
-
-.mainnav{
-    display:flex;
-    gap:36px;
-    margin-inline:auto;
-}
-.mainnav a{
-    color:#222;
-    text-decoration:none;
-    font-size:14px;
-}
-.mainnav a:hover{color:#000}
-
-.login-link{
-    color:var(--brand);
-    text-decoration:none;
-    font-weight:500;
-}
-.login-link:hover{text-decoration:underline}
-
 /* Hero/form */
-.main{display:grid; place-items:start center; padding:40px 16px}
+.main {
+    display: grid;
+    place-items: start center;
+    padding: 40px 16px ;
+    flex: 1;
+}
+
 .hero{
     margin:30px auto 24px;
     text-align:center;
@@ -122,18 +101,9 @@ body{
 .btn:active{transform:translateY(1px)}
 .btn:focus-visible{outline:4px solid var(--focus)}
 
-/* Footer */
-.footer{
-    background:#f4f6f8;
-    border-top:1px solid var(--line);
-    color:#6f7580;
-    font-size:12px;
-    text-align:center;
-    padding:12px 0;
-}
-
 /* Responsive tweaks */
 @media (max-width:720px){
     .mainnav{display:none} /* on masque le menu central sur mobile */
     .topbar .container{justify-content:space-between}
 }
+
