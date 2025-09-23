@@ -8,7 +8,12 @@
 }
 
 *{box-sizing:border-box}
-html,body{height:100%}
+html,body{
+    height:100% ;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
 body{
     margin:0;
     font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -19,22 +24,13 @@ body{
 /* Layout */
 .container{max-width:1100px;margin:auto;padding:0 16px}
 
-/* Topbar */
-.topbar{background:#fff;border-bottom:1px solid var(--line)}
-.topbar .container{
-    height:64px;display:flex;align-items:center;gap:16px;justify-content:space-between
-}
-.brand{display:flex;align-items:center;gap:10px}
-.brand-name{font-weight:600}
-.logo{display:block}
-.mainnav{display:flex;gap:36px;margin-inline:auto}
-.mainnav a{color:#222;text-decoration:none;font-size:14px}
-.mainnav a:hover{color:#000}
-.login-link{color:var(--brand);text-decoration:none;font-weight:500}
-.login-link:hover{text-decoration:underline}
-
 /* Main/Hero */
-.main{display:grid;place-items:start center;padding:40px 16px}
+.main {
+    display: grid;
+    place-items: start center;
+    padding: 40px 16px ;
+    flex: 1;
+}
 .hero{margin:30px auto 24px;text-align:center;max-width:760px}
 .hero h1{margin:8px 0 8px;font-size:22px;font-weight:600}
 .subtitle{margin:0 0 18px;color:#404349;font-size:13px}
@@ -65,9 +61,6 @@ body{
 .mt-16{margin-top:16px}
 .link-strong{color:#2a2adf;text-decoration:none;font-weight:600}
 .link-strong:hover{text-decoration:underline}
-
-/* Footer */
-.footer{background:#f4f6f8;border-top:1px solid var(--line);color:#6f7580;font-size:12px;text-align:center;padding:12px 0}
 
 /* Responsive */
 @media (max-width:720px){
