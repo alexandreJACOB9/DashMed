@@ -27,7 +27,7 @@ if (is_file($autoLoader)) {
 }
 
 // La classe CSRF est dans un fichier nommé différemment: on l'inclut explicitement
-require_once dirname(__DIR__) . '/SITE/Core/SITE_Core_Csrf.php';
+require_once dirname(__DIR__) . '/SITE/Core/Csrf.php';
 
 use Controllers\AuthController;
 
@@ -77,4 +77,5 @@ if ($path === '/logout' || $path === '/deconnexion') {
 // 404 par défaut
 http_response_code(404);
 echo 'Page non trouvée';
+
 
