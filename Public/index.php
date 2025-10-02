@@ -13,14 +13,18 @@ session_set_cookie_params([
 session_name('dashmed_session');
 session_start();
 
-// Autoload: pointer vers le dossier /SITE pour retrouver Controllers/, Models/, Core/
-spl_autoload_register(function (string $class): void {
-    $baseDir = dirname(__DIR__) . '/SITE';
-    $file = $baseDir . '/' . str_replace('\\', '/', $class) . '.php';
-    if (is_file($file)) {
-        require $file;
-    }
-});
+$siteDir = dirname(__DIR__);
+$autoLoader = $siteDir . '/Core/AutoLoader.php';
+if (is_file($autoLoader)) {
+    require $autoLoader;
+} else {
+    spl_autoload_register(function (string $class) use ($siteDir): void {
+        $file = $siteDir . '/' . str_replace('\\', '/', $class) . '.php';
+        if (is_file($file)) {
+            require $file;
+        }
+    });
+}
 
 // La classe CSRF est dans un fichier nommé différemment: on l'inclut explicitement
 require_once dirname(__DIR__) . '/SITE/Core/SITE_Core_Csrf.php';
@@ -73,3 +77,4 @@ if ($path === '/logout' || $path === '/deconnexion') {
 // 404 par défaut
 http_response_code(404);
 echo 'Page non trouvée';
+
