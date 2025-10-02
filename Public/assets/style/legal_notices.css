@@ -7,15 +7,33 @@
 }
 
 *{box-sizing:border-box}
-html,body{height:100%}
-body{
-    margin:0;
-    font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    color:var(--text); background:var(--bg);
-    padding: 64px;
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-.container{max-width:900px;margin:auto;padding:0 16px}
+body {
+    font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    padding-top : 64px;
+}
+
+/* Layout */
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 16px;
+}
 
 /* Topbar */
 .topbar{background:#fff;border-bottom:1px solid var(--line)}
