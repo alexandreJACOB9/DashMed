@@ -34,3 +34,9 @@
 .logo {
     width: 40px;
 }
+
+.current {
+    color : #12C9D4;
+    font-weight: bold;
+    text-decoration: none;
+}
