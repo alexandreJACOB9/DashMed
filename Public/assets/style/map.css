@@ -27,10 +27,7 @@ h1 {
 .sitemap a:hover {
     color: #000;
 }
-.sitemap a.active {
-    color: #2a2adf;
-    font-weight: 600;
-}
+
 .level-1,
 .level-2 {
     list-style: none;
