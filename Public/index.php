@@ -26,57 +26,46 @@ if (is_file($autoLoader)) {
     });
 }
 
-// La classe CSRF est dans un fichier nommé différemment: on l'inclut explicitement
-require_once dirname(__DIR__) . '/SITE/Core/Csrf.php';
+// Inclure Csrf si besoin (selon ton code actuel)
+require_once $siteDir . '/Core/Csrf.php';
+
+// PATCH TEMPORAIRE pour débloquer: on inclut explicitement le contrôleur
+require_once $siteDir . '/Controllers/AuthController.php';
 
 use Controllers\AuthController;
 
-// Récupère le chemin et normalise (supprime la barre finale sauf pour la racine)
+// Normalisation du path
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?: '/';
 $path = rtrim($path, '/');
-if ($path === '') {
-    $path = '/';
-}
+if ($path === '') { $path = '/'; }
 
-// Route santé (debug): utile pour valider que le docroot et la réécriture fonctionnent
 if ($path === '/health') {
     header('Content-Type: text/plain; charset=utf-8');
     echo 'OK';
     exit;
 }
 
-// Inscription (par défaut sur /). Gère aussi /index.php
+// Inscription
 if ($path === '/' || $path === '/inscription' || $path === '/register' || $path === '/index.php') {
     $controller = new AuthController();
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $controller->register();
-    } else {
-        $controller->showRegister();
-    }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') $controller->register();
+    else $controller->showRegister();
     exit;
 }
 
 // Connexion
 if ($path === '/login' || $path === '/connexion') {
     $controller = new AuthController();
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $controller->login();
-    } else {
-        $controller->showLogin();
-    }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') $controller->login();
+    else $controller->showLogin();
     exit;
 }
 
 // Déconnexion
 if ($path === '/logout' || $path === '/deconnexion') {
-    $controller = new AuthController();
-    $controller->logout();
+    (new AuthController())->logout();
     exit;
 }
 
-// 404 par défaut
 http_response_code(404);
 echo 'Page non trouvée';
-
-
-
