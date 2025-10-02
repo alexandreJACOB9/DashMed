@@ -55,13 +55,28 @@
     box-shadow:0 6px 16px rgba(18,201,212,.25);
     transition:transform .08s ease, filter .15s ease;
 }
-.btn:hover{filter:brightness(1.03)}
-.btn:active{transform:translateY(1px)}
-.btn:focus-visible{outline:4px solid var(--focus)}
 
-/* Responsive tweaks */
-@media (max-width:720px){
-    .mainnav{display:none} /* on masque le menu central sur mobile */
-    .topbar .container{justify-content:space-between}
+/* Button States */
+.btn:hover {
+    filter: brightness(1.03);
 }
 
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn:focus-visible {
+    outline: 4px solid var(--focus);
+}
+
+/* Responsive Tweaks */
+@media (max-width: 720px) {
+    /* On masque le menu central sur mobile */
+    .mainnav {
+        display: none;
+    }
+
+    .topbar .container {
+        justify-content: space-between;
+    }
+}
