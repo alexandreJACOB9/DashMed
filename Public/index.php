@@ -13,7 +13,7 @@ session_set_cookie_params([
 session_name('dashmed_session');
 session_start();
 
-$siteDir = dirname(__DIR__);
+$siteDir = __DIR__ . '/../SITE';
 $autoLoader = $siteDir . '/Core/AutoLoader.php';
 if (is_file($autoLoader)) {
     require $autoLoader;
@@ -77,5 +77,6 @@ if ($path === '/logout' || $path === '/deconnexion') {
 // 404 par défaut
 http_response_code(404);
 echo 'Page non trouvée';
+
 
 
