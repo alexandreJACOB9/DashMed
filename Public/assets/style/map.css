@@ -1,12 +1,15 @@
-
 /* Content */
 .content {
     padding: 28px 0 18px;
 }
+
+/* Titres principaux */
 h1 {
     margin: 8px 0 8px;
     font-size: 26px;
 }
+
+/* Texte secondaire */
 .muted {
     color: #6f7580;
     font-size: 12px;
@@ -20,10 +23,12 @@ h1 {
     background: #fff;
     padding: 16px;
 }
+
 .sitemap a {
     color: #1f2937;
     text-decoration: none;
 }
+
 .sitemap a:hover {
     color: #000;
 }
@@ -34,20 +39,25 @@ h1 {
     padding-left: 0;
     margin: 0;
 }
+
 .level-1 > li {
     padding: 10px 8px;
     border-bottom: 1px dashed var(--line);
 }
+
 .level-1 > li:last-child {
     border-bottom: none;
 }
+
 .level-2 {
     padding-left: 16px;
     margin-top: 8px;
 }
+
 .level-2 > li {
     padding: 6px 0;
 }
+
 .sitemap span {
     font-weight: 600;
 }
@@ -62,6 +72,7 @@ h1 {
     font-size: 12px;
     color: #55606b;
 }
+
 .tips code {
     background: #eef3f7;
     border-radius: 6px;
