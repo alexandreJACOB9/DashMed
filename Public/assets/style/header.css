@@ -1,0 +1,37 @@
+
+.topbar {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    position: fixed;  /* <- rend le header fixe */
+    top: 0;           /* <- toujours en haut */
+    left: 0;
+    width: 100%;      /* <- s'étend sur toute la largeur */
+    z-index: 1000;    /* <- pour qu'il soit au-dessus des autres éléments */
+}
+
+.topbar .container{
+    height:64px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+}
+.brand{display:flex; align-items:center; gap:10px}
+.brand-name{font-weight:600}
+.logo{display:block}
+
+.mainnav{
+    display:flex;
+    gap:36px;
+    margin-inline:auto;
+}
+.mainnav a{
+    color:#222;
+    text-decoration:none;
+    font-size:14px;
+}
+.mainnav a:hover{color:#000}
+
+.logo {
+    width: 40px;
+}
