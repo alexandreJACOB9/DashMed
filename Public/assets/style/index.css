@@ -1,5 +1,4 @@
 /* Hero section */
-
 .hero {
     background: linear-gradient(180deg, #ffffff, #f8fbfd);
 }
@@ -29,8 +28,7 @@
     gap: 12px;
 }
 
-/* Boutons */
-
+/* Buttons */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -66,7 +64,6 @@
 }
 
 /* Illustrations Hero */
-
 .hero__illus {
     position: relative;
     height: 220px;
@@ -94,19 +91,7 @@
     right: 180px;
 }
 
-@keyframes blip {
-    0%, 100% {
-        transform: scale(.9);
-        opacity: .8;
-    }
-    50% {
-        transform: scale(1.1);
-        opacity: 1;
-    }
-}
-
 /* Features section */
-
 .features {
     padding: 34px 0;
 }
@@ -148,7 +133,6 @@
 }
 
 /* Responsive */
-
 @media (max-width: 900px) {
     .hero__inner {
         grid-template-columns: 1fr;
