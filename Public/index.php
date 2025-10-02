@@ -27,10 +27,22 @@ require_once dirname(__DIR__) . '/SITE/Core/SITE_Core_Csrf.php';
 
 use Controllers\AuthController;
 
+// Récupère le chemin et normalise (supprime la barre finale sauf pour la racine)
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?: '/';
+$path = rtrim($path, '/');
+if ($path === '') {
+    $path = '/';
+}
 
-// Inscription (par défaut sur /)
-if ($path === '/' || $path === '/inscription' || $path === '/register') {
+// Route santé (debug): utile pour valider que le docroot et la réécriture fonctionnent
+if ($path === '/health') {
+    header('Content-Type: text/plain; charset=utf-8');
+    echo 'OK';
+    exit;
+}
+
+// Inscription (par défaut sur /). Gère aussi /index.php
+if ($path === '/' || $path === '/inscription' || $path === '/register' || $path === '/index.php') {
     $controller = new AuthController();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $controller->register();
