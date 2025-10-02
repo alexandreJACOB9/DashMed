@@ -25,13 +25,13 @@ final class User
         $stmt->execute([$name, $email, $passwordHash, $now, $now]);
         return (int)$pdo->lastInsertId();
     }
-    
-        public static function findByEmail(string $email): ?array
+
+    public static function findByEmail(string $email): ?array
     {
         $pdo = Database::getConnection();
         $stmt = $pdo->prepare('SELECT id, name, email, password_hash FROM users WHERE email = ? LIMIT 1');
         $stmt->execute([$email]);
-        $user = $stmt->fetch();
-        return $user ?: null;
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row ?: null;
     }
 }
