@@ -66,6 +66,7 @@ final class AuthController
 
         require __DIR__ . '/../Views/auth/register.php';
     }
+
     public function showLogin(): void
     {
         $errors = [];
@@ -78,7 +79,9 @@ final class AuthController
     {
         $errors = [];
         $success = '';
-        $old = ['email' => trim((string)($_POST['email'] ?? ''))];
+        $old = [
+            'email' => trim((string)($_POST['email'] ?? '')),
+        ];
         $password = (string)($_POST['password'] ?? '');
         $csrf = (string)($_POST['csrf_token'] ?? '');
 
@@ -94,19 +97,14 @@ final class AuthController
         }
 
         if (!$errors) {
-            $user = User::findByEmail($old['email']);
-            $valid = $user && password_verify($password, $user['password_hash'] ?? '');
-
-            if ($valid) {
-                session_regenerate_id(true);
+            $user = User::findByEmail($old['email'] ?? '');
+            if (!$user || !password_verify($password, $user['password_hash'])) {
+                $errors[] = 'Identifiants invalides.';
+            } else {
                 $_SESSION['user_id'] = (int)$user['id'];
                 $_SESSION['user_name'] = (string)$user['name'];
-                $_SESSION['user_email'] = (string)$user['email'];
-
                 header('Location: /');
                 exit;
-            } else {
-                $errors[] = 'Identifiants invalides.';
             }
         }
 
@@ -117,12 +115,11 @@ final class AuthController
     {
         $_SESSION = [];
         if (ini_get('session.use_cookies')) {
-            $params = session_get_cookie_params();
-            setcookie(session_name(), '', time() - 42000, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+            $p = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000, $p['path'], $p['domain'], $p['secure'], $p['httponly']);
         }
         session_destroy();
-
-        header('Location: /login');
+        header('Location: /');
         exit;
     }
 }
