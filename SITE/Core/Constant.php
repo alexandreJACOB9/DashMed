@@ -1,16 +1,25 @@
 <?php
 
+// Le but de cette classe est de centraliser les chemins des différents dossiers du projet
+// De plus cette classe fournit des méthodes qui renvoient le chemin absolu vers chacun des répertoires à partir du dossier racine.
+// Cela permet d'éviter d'avoir a écrire des chemins en dur dans chaque dossier du code.
+
 final class Constant
 {
+    //On définie les constantes représentant les sous-repertoires du dossier
+
     const VIEW_DIRECTORY       = '/Views/';
     const MODEL_DIRECTORY      = '/Models/';
     const CORE_DIRECTORY       = '/Core/';
     const CONTROLLER_DIRECTORY = '/Controllers/';
     const EXCEPTION_DIRECTORY = '/Exception/';
 
+
+    //Retourne les chemins absolu pour chaque dossier du projet
     public static function rootDirectory()
     {
-        return realpath(__DIR__ . '/../');
+        //retourne le chemin absolu du dossier racine du projet
+        return realpath(__DIR__ . '/../'); // __DIR__ correspond au dossier contenat cette classe
     }
 
     public static function coreDirectory()
