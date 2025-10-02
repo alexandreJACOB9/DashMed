@@ -1,8 +1,14 @@
 
-.topbar{
-    background:#fff;
-    border-bottom:1px solid var(--line);
+.topbar {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    position: fixed;  /* <- rend le header fixe */
+    top: 0;           /* <- toujours en haut */
+    left: 0;
+    width: 100%;      /* <- s'étend sur toute la largeur */
+    z-index: 1000;    /* <- pour qu'il soit au-dessus des autres éléments */
 }
+
 .topbar .container{
     height:64px;
     display:flex;
