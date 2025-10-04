@@ -12,7 +12,15 @@ final class AutoLoader
     //On construit les chemins vers les differents repertoire du projet
     public static function loadCore($className)
     {
-        $file = Constant::coreDirectory() . "$className.php";
+        // Supporte les classes avec namespace 'Core\\'
+        if (str_contains($className, '\\')) {
+            if (str_starts_with($className, 'Core\\')) {
+                $className = substr($className, strlen('Core\\'));
+            } else {
+                return; // pas dans ce namespace
+            }
+        }
+        $file = Constant::coreDirectory() . str_replace('\\', DIRECTORY_SEPARATOR, $className) . '.php';
         return static::load($file);
     }
 
@@ -24,7 +32,14 @@ final class AutoLoader
 
     public static function loadModel($className)
     {
-        $file = Constant::modelDirectory() . "$className.php";
+        if (str_contains($className, '\\')) {
+            if (str_starts_with($className, 'Models\\')) {
+                $className = substr($className, strlen('Models\\'));
+            } else {
+                return; // pas dans Models
+            }
+        }
+        $file = Constant::modelDirectory() . str_replace('\\', DIRECTORY_SEPARATOR, $className) . '.php';
         return static::load($file);
     }
 
@@ -36,7 +51,15 @@ final class AutoLoader
 
     public static function loadController($className)
     {
-        $file = Constant::controllerDirectory() . "$className.php";
+        // Gère namespace Controllers\\
+        if (str_contains($className, '\\')) {
+            if (str_starts_with($className, 'Controllers\\')) {
+                $className = substr($className, strlen('Controllers\\'));
+            } else {
+                return; // pas dans Controllers
+            }
+        }
+        $file = Constant::controllerDirectory() . str_replace('\\', DIRECTORY_SEPARATOR, $className) . '.php';
         return static::load($file);
     }
 

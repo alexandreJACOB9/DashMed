@@ -30,9 +30,14 @@ if (is_file($autoLoader)) {
 require_once $siteDir . '/Core/Csrf.php';
 
 // PATCH TEMPORAIRE pour débloquer: on inclut explicitement le contrôleur
-require_once $siteDir . '/Controllers/AuthController.php';
+require_once $siteDir . '/Controllers/HomeController.php';
 
 use Controllers\AuthController;
+use Controllers\HomeController;
+use Controllers\MapController;
+use Controllers\LegalController;
+use Controllers\RegistrationController;
+use Controllers\ForgottenPasswordController;
 
 // Normalisation du path
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?: '/';
@@ -45,11 +50,37 @@ if ($path === '/health') {
     exit;
 }
 
+// Page d'accueil
+if ($path === '/' || $path === '/index.php') {
+    (new HomeController())->index();
+    exit;
+}
+
+// Plan du site
+if ($path === '/map') {
+    (new MapController())->show();
+    exit;
+}
+
+// Mentions légales
+if ($path === '/legal' || $path === '/mentions-legales') {
+    (new LegalController())->show();
+    exit;
+}
+
+// Mot de passe oublié
+if ($path === '/forgotten-password' || $path === '/mot-de-passe-oublie') {
+    $controller = new ForgottenPasswordController();
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') $controller->submit();
+    else $controller->showForm();
+    exit;
+}
+
 // Inscription
-if ($path === '/' || $path === '/inscription' || $path === '/register' || $path === '/index.php') {
-    $controller = new AuthController();
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') $controller->register();
-    else $controller->showRegister();
+if ($path === '/inscription' || $path === '/register') {
+    $controller = new RegistrationController();
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') $controller->submit();
+    else $controller->show();
     exit;
 }
 
