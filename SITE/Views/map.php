@@ -28,7 +28,7 @@
         <nav class="mainnav" aria-label="Navigation principale">
             <a href="/">Accueil</a>
             <a href="/map" class="current">Plan du site</a>
-            <a href="/legal">Mentions légales</a>
+            <a href="/legal-notices">Mentions légales</a>
             <a href="/login" class="nav-login">Connexion</a>
         </nav>
 
@@ -63,7 +63,7 @@
                 <li>
                     <span>Informations</span>
                     <ul class="level-2">
-                        <li><a href="/legal">Mentions légales</a></li>
+                        <li><a href="/legal-notices">Mentions légales</a></li>
                         <li><a href="/map">Plan du site</a></li>
                     </ul>
                 </li>

@@ -45,8 +45,8 @@
     font-size: 14px;
 }
 
-.mainnav a:hover {
-    
+.mainnav a:hover, .login-btn:hover {
+    color: #717171;
 }
 
 .mainnav a.current {

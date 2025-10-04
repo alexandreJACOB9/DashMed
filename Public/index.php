@@ -29,13 +29,12 @@ if (is_file($autoLoader)) {
 // Inclure Csrf si besoin (selon ton code actuel)
 require_once $siteDir . '/Core/Csrf.php';
 
-// PATCH TEMPORAIRE pour débloquer: on inclut explicitement le contrôleur
-require_once $siteDir . '/Controllers/HomeController.php';
+// Autoload gére maintenant HomeController; plus besoin d'inclusion manuelle
 
 use Controllers\AuthController;
 use Controllers\HomeController;
 use Controllers\MapController;
-use Controllers\LegalController;
+use Controllers\LegalNoticesController;
 use Controllers\RegistrationController;
 use Controllers\ForgottenPasswordController;
 
@@ -63,8 +62,8 @@ if ($path === '/map') {
 }
 
 // Mentions légales
-if ($path === '/legal' || $path === '/mentions-legales') {
-    (new LegalController())->show();
+if ($path === '/legal-notices' || $path === '/mentions-legales') {
+    (new LegalNoticesController())->show();
     exit;
 }
 
@@ -77,7 +76,7 @@ if ($path === '/forgotten-password' || $path === '/mot-de-passe-oublie') {
 }
 
 // Inscription
-if ($path === '/inscription' || $path === '/register') {
+if ($path === '/register' || $path === '/inscription') {
     $controller = new RegistrationController();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') $controller->submit();
     else $controller->show();

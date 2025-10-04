@@ -5,51 +5,98 @@ $csrf_token = Csrf::token();
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <title>Connexion - DashMed</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body{font-family:system-ui;margin:0;padding:24px;background:#0f172a;color:#e5e7eb}
-    .wrap{max-width:480px;margin:0 auto}
-    .card{background:#111827;border:1px solid #1f2937;border-radius:12px;padding:16px}
-    .field{display:grid;gap:6px;margin-bottom:12px}
-    input,button{font:inherit;padding:10px 12px;border-radius:8px;border:1px solid #374151;background:#0b1220;color:#e5e7eb}
-    button{cursor:pointer}
-    .alert{padding:10px 12px;border-radius:8px;margin-bottom:12px}
-    .error{background:#43191a;border:1px solid #7f1d1d}
-    a{color:#22d3ee}
-  </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Connectez-vous à DashMed !">
+    <title>DashMed - Connexion</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/style/authentication.css" />
+    <link rel="stylesheet" href="/assets/style/footer.css" />
+    <link rel="stylesheet" href="/assets/style/header.css" />
+    <link rel="stylesheet" href="/assets/style/body_main_container.css" />
+    <script src="/assets/script/header_responsive.js" defer></script>
+    <link rel="icon" href="/assets/images/icons/favicon.ico">
+
+    <style>
+        .alert { padding: 12px 14px; border-radius: 6px; margin-bottom: 16px; }
+        .alert-error { background: #fde2e1; color: #8b1a15; border: 1px solid #f7b4b1; }
+        .alert-success { background: #e6f6e6; color: #256029; border: 1px solid #b5e0b7; }
+        .errors { margin: 0; padding-left: 18px; }
+    </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Connexion</h1>
-
-    <?php if (!empty($errors)): ?>
-      <div class="alert error">
-        <ul>
-          <?php foreach ($errors as $e): ?>
-            <li><?= htmlspecialchars($e, ENT_QUOTES, 'UTF-8') ?></li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
-    <?php endif; ?>
-
-    <div class="card">
-      <form method="post" action="/login">
-        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8') ?>">
-        <div class="field">
-          <label>Email</label>
-          <input type="email" name="email" required value="<?= htmlspecialchars($old['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+<header class="topbar">
+    <div class="container">
+        <div class="brand">
+            <img class="logo" src="/assets/images/logo.png" alt="logo">
+            <span class="brand-name">DashMed</span>
         </div>
-        <div class="field">
-          <label>Mot de passe</label>
-          <input type="password" name="password" required>
-        </div>
-        <button type="submit">Se connecter</button>
-      </form>
+
+        <nav class="mainnav" aria-label="Navigation principale">
+            <a href="/">Accueil</a>
+            <a href="/map">Plan du site</a>
+            <a href="/legal-notices">Mentions légales</a>
+            <a href="/login" class="nav-login current">Connexion</a>
+        </nav>
+
+        <a href="/login" class="login-btn current">Connexion</a>
+
+        <button class="burger-menu" aria-label="Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
+</header>
 
-    <p>Pas de compte ? <a href="/">Créer un compte</a></p>
-  </div>
+<main class="main">
+    <section class="hero">
+        <h1>Bienvenue dans DashMed</h1>
+        <p class="subtitle">Connectez-vous pour continuer</p>
+
+        <?php if (!empty($errors)): ?>
+            <div class="alert alert-error">
+                <ul class="errors">
+                    <?php foreach ($errors as $err): ?>
+                        <li><?= htmlspecialchars($err, ENT_QUOTES, 'UTF-8') ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($success)): ?>
+            <div class="alert alert-success"><?= htmlspecialchars($success, ENT_QUOTES, 'UTF-8') ?></div>
+        <?php endif; ?>
+
+        <form class="form" action="/login" method="post" autocomplete="on" novalidate>
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8') ?>" />
+            <div class="field">
+                <input type="email" name="email" placeholder="Adresse email" required value="<?= htmlspecialchars($old['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
+            </div>
+            <div class="field">
+                <input type="password" name="password" placeholder="Mot de passe" required />
+            </div>
+            <button class="btn" type="submit">Se connecter</button>
+
+            <p class="muted small mt-16">
+                Pas de compte ? <a href="/inscription" class="link-strong">Inscrivez-vous</a>
+            </p>
+            <p class="muted small">ou</p>
+            <p class="small">
+                <a href="/forgotten-password" class="link-strong">Mot de passe oublié ?</a>
+            </p>
+        </form>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        © 2025 DashMed. Tous droits réservés
+    </div>
+</footer>
 </body>
 </html>

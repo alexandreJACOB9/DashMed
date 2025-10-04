@@ -6,7 +6,7 @@ $csrf_token = \Core\Csrf::token();
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Pas de compte pour utiliser DashMed ? Inscrivez-vous !">
+    <meta name="description" content="Pas de compte utiliser DashMed ? Inscrivez-vous !">
     <title>DashMed - Inscription</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,6 +16,8 @@ $csrf_token = \Core\Csrf::token();
     <link rel="stylesheet" href="/assets/style/registration.css" />
     <link rel="stylesheet" href="/assets/style/footer.css" />
     <link rel="stylesheet" href="/assets/style/header.css" />
+    <link rel="stylesheet" href="/assets/style/body_main_container.css" />
+    <script src="/assets/script/header_responsive.js" defer></script>
     <link rel="icon" href="/assets/images/icons/favicon.ico">
 
     <style>
@@ -35,11 +37,18 @@ $csrf_token = \Core\Csrf::token();
 
         <nav class="mainnav" aria-label="Navigation principale">
             <a href="/">Accueil</a>
-            <a href="#">Plan du site</a>
-            <a href="#">Mentions légales</a>
+            <a href="/map">Plan du site</a>
+            <a href="/legal-notices">Mentions légales</a>
+            <a href="/login" class="nav-login">Connexion</a>
         </nav>
 
-        <a href="/login">Connexion</a>
+        <a href="/login" class="login-btn">Connexion</a>
+
+        <button class="burger-menu" aria-label="Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
 </header>
 
@@ -62,7 +71,7 @@ $csrf_token = \Core\Csrf::token();
             </div>
         <?php endif; ?>
 
-        <form class="form" action="/inscription" method="post" autocomplete="on" novalidate>
+    <form class="form" action="/inscription" method="post" autocomplete="on" novalidate>
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8') ?>"/>
 
             <div class="field">
