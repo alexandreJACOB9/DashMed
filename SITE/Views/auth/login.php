@@ -40,7 +40,6 @@ $csrf_token = Csrf::token();
             <a href="/">Accueil</a>
             <a href="/map">Plan du site</a>
             <a href="/legal-notices">Mentions légales</a>
-            <a href="/login" class="nav-login current">Connexion</a>
         </nav>
 
         <a href="/login" class="login-btn current">Connexion</a>

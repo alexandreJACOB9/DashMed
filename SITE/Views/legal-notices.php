@@ -29,7 +29,6 @@
             <a href="/">Accueil</a>
             <a href="/map">Plan du site</a>
             <a href="/legal" class="current">Mentions légales</a>
-            <a href="/login" class="nav-login">Connexion</a>
         </nav>
 
         <a href="/login" class="login-btn">Connexion</a>

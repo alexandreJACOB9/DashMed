@@ -1,8 +1,8 @@
 <?php
 namespace Controllers;
 
-use Core\Csrf;
 use Models\User;
+use Core\Csrf;
 
 final class AuthController
 {
@@ -10,8 +10,7 @@ final class AuthController
     {
         $errors = [];
         $success = '';
-        $old = ['name' => '', 'email' => ''];
-
+        $old = ['name'=>'','last_name'=>'','email'=>''];
         require __DIR__ . '/../Views/auth/register.php';
     }
 
@@ -21,46 +20,41 @@ final class AuthController
         $success = '';
         $old = [
             'name' => trim((string)($_POST['name'] ?? '')),
-            'email' => trim((string)($_POST['email'] ?? '')),
+            'last_name'  => trim((string)($_POST['last_name'] ?? '')),
+            'email'      => trim((string)($_POST['email'] ?? '')),
         ];
-        $password = (string)($_POST['password'] ?? '');
+        $password         = (string)($_POST['password'] ?? '');
         $password_confirm = (string)($_POST['password_confirm'] ?? '');
-        $csrf = (string)($_POST['csrf_token'] ?? '');
+        $csrf             = $_POST['csrf_token'] ?? '';
 
-        if (!Csrf::validate($csrf)) {
-            $errors[] = 'Session expirée ou jeton CSRF invalide. Veuillez réessayer.';
-        }
-
-        if ($old['name'] === '') {
-            $errors[] = 'Le nom est obligatoire.';
-        }
-        if (!filter_var($old['email'], FILTER_VALIDATE_EMAIL)) {
-            $errors[] = 'Adresse email invalide.';
-        }
+        if (!Csrf::validate($csrf)) $errors[] = 'CSRF invalide.';
+        if ($old['name'] === '' || mb_strlen($old['name']) < 2) $errors[] = 'Prénom invalide.';
+        if ($old['last_name'] === '' || mb_strlen($old['last_name']) < 2)   $errors[] = 'Nom invalide.';
+        if (!filter_var($old['email'], FILTER_VALIDATE_EMAIL))             $errors[] = 'Email invalide.';
+        if ($password !== $password_confirm)                               $errors[] = 'Mots de passe différents.';
         if (
             strlen($password) < 12 ||
-            !preg_match('/[A-Z]/', $password) ||
-            !preg_match('/[a-z]/', $password) ||
-            !preg_match('/\d/', $password)
-        ) {
-            $errors[] = 'Le mot de passe doit contenir au moins 12 caractères, avec majuscules, minuscules et chiffres.';
-        }
-        if ($password !== $password_confirm) {
-            $errors[] = 'Les mots de passe ne correspondent pas.';
-        }
+            !preg_match('/[A-Z]/',$password) ||
+            !preg_match('/[a-z]/',$password) ||
+            !preg_match('/\d/',$password) ||
+            !preg_match('/[^A-Za-z0-9]/',$password)
+        ) $errors[] = 'Mot de passe trop faible.';
 
         if (!$errors && User::emailExists($old['email'])) {
-            $errors[] = 'Un compte existe déjà avec cette adresse email.';
+            $errors[] = 'Email déjà utilisé.';
         }
 
         if (!$errors) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
             try {
-                User::create($old['name'], $old['email'], $hash);
-                $success = 'Compte créé avec succès. Vous pouvez maintenant vous connecter.';
-                $old = ['name' => '', 'email' => ''];
-            } catch (\Throwable $e) {
-                $errors[] = 'Erreur lors de la création du compte.';
+                if (User::create($old['name'],$old['last_name'],$old['email'],$hash)) {
+                    $success = 'Compte créé.';
+                    $old = ['name'=>'','last_name'=>'','email'=>''];
+                } else {
+                    $errors[] = 'Insertion échouée.';
+                }
+            } catch (\Throwable) {
+                $errors[] = 'Erreur base.';
             }
         }
 

@@ -39,7 +39,6 @@ $csrf_token = \Core\Csrf::token();
             <a href="/">Accueil</a>
             <a href="/map">Plan du site</a>
             <a href="/legal-notices">Mentions légales</a>
-            <a href="/login" class="nav-login">Connexion</a>
         </nav>
 
         <a href="/login" class="login-btn">Connexion</a>
@@ -75,7 +74,11 @@ $csrf_token = \Core\Csrf::token();
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8') ?>"/>
 
             <div class="field">
-                <input type="text" name="name" placeholder="Nom" required value="<?= htmlspecialchars($old['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
+                <input type="text" name="name" placeholder="Prénom" required value="<?= htmlspecialchars($old['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
+            </div>
+
+            <div class="field">
+                <input type="text" name="last_name" placeholder="Nom" required value="<?= htmlspecialchars($old['last_name'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
             </div>
 
             <div class="field">

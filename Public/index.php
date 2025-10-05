@@ -11,8 +11,9 @@ session_set_cookie_params([
     'samesite' => 'Lax',
 ]);
 session_name('dashmed_session');
-session_start();
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $siteDir = __DIR__ . '/../SITE';
 $autoLoader = $siteDir . '/Core/AutoLoader.php';
 if (is_file($autoLoader)) {
