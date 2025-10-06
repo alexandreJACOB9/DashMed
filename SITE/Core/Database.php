@@ -63,4 +63,5 @@ final class Database {
         }
     }
     return $path;
+    }
 }
