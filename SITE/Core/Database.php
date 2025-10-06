@@ -39,15 +39,28 @@ final class Database {
         return self::$pdo;
     }
 
-    private static function loadEnv() : ?string {
-        $path = dirname(__DIR__,2).'/.env';
-        if (!is_file($path)) return '';
-        foreach (file($path, FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES) as $line) {
-            if ($line[0]==='#' || !str_contains($line,'=')) continue;
-            [$k,$v]=array_map('trim',explode('=',$line,2));
-            if ($k!=='' && getenv($k)===false) putenv("$k=$v");
+    private static function loadEnv(): ?string {
+    $path = dirname(__DIR__, 2).'/.env';
+    if (!is_file($path)) return null;
+
+    foreach (file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        $line = trim($line);
+        if ($line === '' || $line[0] === '#') continue;
+        if (!str_contains($line, '=')) continue;
+
+        [$k, $v] = array_map('trim', explode('=', $line, 2));
+
+        if ($k === '') continue;
+
+        // Retire des guillemets éventuels
+        if (($v[0] ?? '') === '"' && str_ends_with($v, '"')) {
+            $v = stripcslashes(substr($v, 1, -1));
         }
 
-        return $path;
+        if (getenv($k) === false) {
+            putenv("$k=$v");
+            $_ENV[$k] = $v;
+        }
     }
+    return $path;
 }
