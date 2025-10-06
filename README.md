@@ -25,14 +25,14 @@ Pour la base de donnée il est conseillé de faire ca :
 Solution  : AlwaysData (Recommandé pour vous)
 Avantages :
 
-100 MB de base de données gratuite
-Interface en français
-Accès phpMyAdmin inclus
-Compatible avec votre hébergement actuel
+100 MB de base de données gratuite,
+Interface en français,
+Accès phpMyAdmin inclus,
+Compatible avec votre hébergement actuel,
 
 Étapes :
 
-Créez un compte sur alwaysdata.com
-Dans le panneau, créez une base MySQL
-Notez les informations de connexion
-Importez votre fichier SQL via phpMyAdmin
+Créez un compte sur alwaysdata.com,
+Dans le panneau, créez une base MySQL,
+Notez les informations de connexion,
+Importez votre fichier SQL via phpMyAdmin,
