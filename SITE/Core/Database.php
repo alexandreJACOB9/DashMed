@@ -11,25 +11,16 @@ final class Database
     public static function getConnection(): PDO
     {
         if (self::$pdo === null) {
+            self::loadEnv();
 
-            // Détection : en production (AlwaysData) si domaine contient alwaysdata.net
-            $isProd = isset($_SERVER['HTTP_HOST']) && str_contains($_SERVER['HTTP_HOST'], 'alwaysdata.net');
+            $driver = getenv('DB_DRIVER') ?: 'mysql';
+            $host   = getenv('DB_HOST') ?: '127.0.0.1';
+            $port   = getenv('DB_PORT') ?: '3306';
+            $db     = getenv('DB_NAME') ?: 'dashmed';
+            $user   = getenv('DB_USER') ?: 'root';
+            $pass   = getenv('DB_PASS') ?: '';
 
-            if ($isProd) {
-                // REMPLACER les XXXXX ci-dessous par tes valeurs exactes depuis le panel AlwaysData
-                $host = 'mysql-dashmed-site.alwaysdata.net';
-                $db   = 'dashmed-site_db';               // nom complet de la base
-                $user = '433165';                  // utilisateur MySQL
-                $pass = 'mCwc99{0~D';            // mot de passe MySQL
-            } else {
-                // Local
-                $host = '127.0.0.1';
-                $db   = 'dashmed';
-                $user = 'root';
-                $pass = '';
-            }
-
-            $dsn = "mysql:host=$host;port=3306;dbname=$db;charset=utf8mb4";
+            $dsn = "$driver:host=$host;port=$port;dbname=$db;charset=utf8mb4";
 
             try {
                 self::$pdo = new PDO($dsn, $user, $pass, [
@@ -38,10 +29,24 @@ final class Database
                     PDO::ATTR_EMULATE_PREPARES   => false,
                 ]);
             } catch (PDOException $e) {
-                error_log('DB CONNECTION FAIL: '.$e->getMessage());
+                error_log("DB FAIL ($dsn): ".$e->getMessage());
                 throw $e;
             }
         }
         return self::$pdo;
+    }
+
+    private static function loadEnv(): void
+    {
+        $path = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . '.env';
+        if (!is_file($path)) return;
+
+        foreach (file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+            if ($line[0] === '#' || !str_contains($line, '=')) continue;
+            [$k,$v] = array_map('trim', explode('=', $line, 2));
+            if ($k !== '' && getenv($k) === false) {
+                putenv("$k=$v");
+            }
+        }
     }
 }
