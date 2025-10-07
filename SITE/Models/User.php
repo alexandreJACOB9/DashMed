@@ -2,6 +2,7 @@
 namespace Models;
 
 use Core\Database;
+use PDO;
 
 final class User
 {
@@ -10,15 +11,32 @@ final class User
         $pdo = Database::getConnection();
         $st = $pdo->prepare('SELECT 1 FROM users WHERE email = ? LIMIT 1');
         $st->execute([$email]);
-        return (bool)$st->fetchColumn();
+        return (bool) $st->fetchColumn();
     }
 
-    public static function create(string $first, string $last, string $email, string $hash): bool
+    // Création prénom + nom  + hash du mot de passe
+    public static function create(string $name, string $lastName, string $email, string $hash): bool
     {
         $pdo = Database::getConnection();
         $st = $pdo->prepare(
-            'INSERT INTO users (first_name,last_name,email,password) VALUES (?,?,?,?)'
+            'INSERT INTO users (name, last_name, email, password, created_at, updated_at)
+             VALUES (?, ?, ?, ?, NOW(), NOW())'
         );
-        return $st->execute([$first,$last,$email,$hash]);
+        return $st->execute([$name, $lastName, $email, $hash]);
+    }
+
+    // Récupération pour la connexion
+    public static function findByEmail(string $email): ?array
+    {
+        $pdo = Database::getConnection();
+        $st = $pdo->prepare('
+            SELECT user_id, name, last_name, email, password
+            FROM users
+            WHERE email = ?
+            LIMIT 1
+        ');
+        $st->execute([$email]);
+        $user = $st->fetch(PDO::FETCH_ASSOC);
+        return $user ?: null;
     }
 }
