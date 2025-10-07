@@ -14,6 +14,7 @@ session_name('dashmed_session');
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
 $siteDir = __DIR__ . '/../SITE';
 $autoLoader = $siteDir . '/Core/AutoLoader.php';
 if (is_file($autoLoader)) {
@@ -27,10 +28,8 @@ if (is_file($autoLoader)) {
     });
 }
 
-// Inclure Csrf si besoin (selon ton code actuel)
+// Inclure Csrf si besoin
 require_once $siteDir . '/Core/Csrf.php';
-
-// Autoload gére maintenant HomeController; plus besoin d'inclusion manuelle
 
 use Controllers\AuthController;
 use Controllers\HomeController;
@@ -47,6 +46,15 @@ if ($path === '') { $path = '/'; }
 if ($path === '/health') {
     header('Content-Type: text/plain; charset=utf-8');
     echo 'OK';
+    exit;
+}
+
+// ------------------------------
+// REDIRECTION AUTOMATIQUE POUR CONNECTÉS
+// ------------------------------
+if (($path === '/' || $path === '/index.php') && !empty($_SESSION['user'])) {
+    // Utilisateur connecté → rediriger vers le dashboard
+    header('Location: /dashboard.php');
     exit;
 }
 

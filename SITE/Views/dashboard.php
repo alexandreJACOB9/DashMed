@@ -1,4 +1,20 @@
-<?php $csrf_token = \Core\Csrf::token(); ?>
+<?php
+$csrf_token = \Core\Csrf::token(); // Génère le token CSRF
+session_start();
+
+// Sécurité : si l'utilisateur n'est pas connecté, redirige vers login
+if (empty($_SESSION['user'])) {
+    header('Location: /login');
+    exit;
+}
+
+// Exemple de données dynamiques (activités récentes)
+$activites = [
+    ["label" => "Rdv avec Dr. Smith", "date" => "03/12/2025"],
+    ["label" => "Résultats prise de sang", "date" => "02/12/2025"],
+    ["label" => "Prescription médicaments", "date" => "01/12/2025"]
+];
+?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -22,14 +38,10 @@
       <span class="brand-name">DashMed</span>
     </div>
     <nav class="mainnav" aria-label="Navigation principale">
-      <a href="/" class="active">Accueil</a>
+      <a href="/dashboard.php" class="active">Accueil</a>
       <a href="/map">Plan du site</a>
-      <a href="/legal">Mentions légales</a>
-      <?php if (!empty($_SESSION['user'])): ?>
-        <a href="/logout">Déconnexion</a>
-      <?php else: ?>
-        <a href="/login">Connexion</a>
-      <?php endif; ?>
+      <a href="/legal-notices">Mentions légales</a>
+      <a href="/logout">Déconnexion</a>
     </nav>
   </div>
 </header>
@@ -43,7 +55,6 @@
         Obtenez un aperçu rapide de vos statistiques clés et de vos activités récentes
       </p>
       <div class="chart-placeholder" aria-hidden="true">
-        <!-- Pure CSS fake chart -->
         <div class="bars">
           <span style="--h:25%"></span>
           <span style="--h:40%"></span>
@@ -61,14 +72,11 @@
     <aside class="panel panel-activity">
       <h2 class="panel-title">Activités récentes</h2>
       <ul class="activity-list">
-        <?php 
-        $activites = [
-          ["label" => "Rdv avec Dr. Smith", "date" => "03/12/2025"],
-          ["label" => "Résultats prise de sang", "date" => "02/12/2025"],
-          ["label" => "Prescription médicaments", "date" => "01/12/2025"]
-        ];
-        foreach ($activites as $a): ?>
-          <li><span class="label"><?= htmlspecialchars($a["label"], ENT_QUOTES, 'UTF-8') ?></span> <span class="date">- <?= htmlspecialchars($a["date"], ENT_QUOTES, 'UTF-8') ?></span></li>
+        <?php foreach ($activites as $a): ?>
+          <li>
+            <span class="label"><?= htmlspecialchars($a["label"], ENT_QUOTES, 'UTF-8') ?></span>
+            <span class="date">- <?= htmlspecialchars($a["date"], ENT_QUOTES, 'UTF-8') ?></span>
+          </li>
         <?php endforeach; ?>
       </ul>
     </aside>
