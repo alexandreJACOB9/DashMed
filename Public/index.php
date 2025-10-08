@@ -54,7 +54,7 @@ if ($path === '/health') {
 // ------------------------------
 if (($path === '/' || $path === '/index.php') && !empty($_SESSION['user'])) {
     // Utilisateur connecté → rediriger vers le dashboard
-    header('Location: /dashboard.php');
+    header('Location: /dashboard');
     exit;
 }
 
@@ -106,7 +106,7 @@ if ($path === '/logout' || $path === '/deconnexion') {
     exit;
 }
 
-if ($uri === '/dashboard') {
+if ($path === '/dashboard') {
     (new \Controllers\DashboardController())->index();
     exit;
 }

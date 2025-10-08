@@ -77,42 +77,47 @@ final class AuthController
 
     public function login(): void
     {
-        $errors = [];
-        $success = '';
-        
-        $email = trim($_POST['email'] ?? '');
-        $password = $_POST['password'] ?? '';
+         if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+    $errors = [];
+    $success = '';
+    $email = trim((string)($_POST['email'] ?? ''));
+    $password = (string)($_POST['password'] ?? '');
+    $csrf = (string)($_POST['csrf_token'] ?? '');
+    $old = ['email' => $email];
 
-        $csrf = (string)($_POST['csrf_token'] ?? '');
+    if (!Csrf::validate($csrf)) {
+        $errors[] = 'Session expirée ou jeton CSRF invalide. Veuillez réessayer.';
+    }
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = 'Adresse email invalide.';
+    }
+    if ($email === '' || $password === '') {
+        $errors[] = 'Champs requis.';
+    }
 
-        if (!Csrf::validate($csrf)) {
-            $errors[] = 'Session expirée ou jeton CSRF invalide. Veuillez réessayer.';
+    if (!$errors) {
+        $user = User::findByEmail($email);
+        if (!$user || !password_verify($password, $user['password'])) {
+            $errors[] = 'Identifiants invalides.';
+        } else {
+            session_regenerate_id(true);
+            // Normalise le nom (prend name ou first_name)
+            $first = $user['name'] ?? ($user['first_name'] ?? '');
+            $last  = $user['last_name'] ?? '';
+            $_SESSION['user'] = [
+                'id'    => (int)$user['user_id'],
+                'email' => $user['email'],
+                'name'  => trim($first.' '.$last)
+            ];
+            $_SESSION['user_id']    = (int)$user['user_id'];   // (optionnel si déjà dans user)
+            $_SESSION['user_email'] = $user['email'];
+            $_SESSION['user_name']  = trim($first.' '.$last);
+            header('Location: /dashboard');
+            exit;
         }
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = 'Adresse email invalide.';
-        }
+    }
 
-        if (!$email || !$password) {
-            $errors[] = 'Champs requis.';
-        }
-
-        if (!$errors) {
-            $user = User::findByEmail($email);
-            if (!$user || !password_verify($password, $user['password'])) {
-                $errors[] = 'Identifiants invalides.';
-            } else {
-                // Sécurité évite la fixation de session
-                session_regenerate_id(true);
-                $_SESSION['user_id'] = (int)$user['user_id'];
-                $_SESSION['user_email'] = (string)$user['email'];
-                // Concatènation de prénom + nom
-                $_SESSION['user_name'] = trim(($user['name'] ?? '') . ' ' . ($user['last_name'] ?? ''));
-                header('Location: /dashboard');
-                exit;
-            }
-        }
-
-        require __DIR__ . '/../Views/auth/login.php';
+    require __DIR__ . '/../Views/auth/login.php';
     }
 
     public function logout(): void
