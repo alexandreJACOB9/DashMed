@@ -41,7 +41,7 @@ $activites = [
       <a href="/dashboard" class="active">Accueil</a>
       <a href="/map">Plan du site</a>
       <a href="/legal-notices">Mentions légales</a>
-      <a href="/logout">Déconnexion</a>
+      <a href="/profile">Profil</a>
     </nav>
   </div>
 </header>

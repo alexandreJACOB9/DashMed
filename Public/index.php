@@ -111,5 +111,10 @@ if ($path === '/dashboard') {
     exit;
 }
 
+if ($path === '/profile') {
+    (new \Controllers\ProfileController())->show();
+    exit;
+}
+
 http_response_code(404);
 echo 'Page non trouvée';
