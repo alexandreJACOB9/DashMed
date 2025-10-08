@@ -1,13 +1,13 @@
 <?php
-$csrf_token = \Core\Csrf::token(); // Génère le token CSRF
+$csrf_token = \Core\Csrf::token();
 
-// Sécurité : si l'utilisateur n'est pas connecté, redirige vers login
+// Sécurité : redirection si non connecté
 if (empty($_SESSION['user'])) {
     header('Location: /login');
     exit;
 }
 
-// Exemple de données dynamiques (activités récentes)
+// Exemple de données dynamiques
 $activites = [
     ["label" => "Rdv avec Dr. Smith", "date" => "03/12/2025"],
     ["label" => "Résultats prise de sang", "date" => "02/12/2025"],
@@ -33,25 +33,36 @@ $activites = [
 <header class="topbar">
   <div class="inner">
     <div class="brand">
-      <div class="logo" aria-hidden="true">DM</div>
-      <span class="brand-name">DashMed</span>
+      <!-- Logo DashMed -->
+      <a href="/dashboard" class="logo-link" aria-label="Page d’accueil DashMed">
+        <img src="/assets/images/logo_dashmed.svg" alt="Logo DashMed" class="logo-img">
+        <span class="brand-name">DashMed</span>
+      </a>
     </div>
+
     <nav class="mainnav" aria-label="Navigation principale">
       <a href="/dashboard" class="active">Accueil</a>
       <a href="/map">Plan du site</a>
       <a href="/legal-notices">Mentions légales</a>
       <a href="/profile">Profil</a>
     </nav>
+
+    <div class="user-actions">
+      <form method="post" action="/logout" class="logout-form">
+        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8') ?>">
+        <button type="submit" class="logout-btn">Déconnexion</button>
+      </form>
+    </div>
   </div>
 </header>
 
-<main class="layout">
+<main class="layout" style="min-height: calc(100vh - 120px);">
   <section class="grid">
     <!-- Bloc Aperçu -->
     <article class="panel panel-overview">
       <h2 class="panel-title">Aperçu du Dashboard</h2>
       <p class="panel-intro">
-        Obtenez un aperçu rapide de vos statistiques clés et de vos activités récentes
+        Obtenez un aperçu rapide de vos statistiques clés et de vos activités récentes.
       </p>
       <div class="chart-placeholder" aria-hidden="true">
         <div class="bars">
@@ -104,7 +115,7 @@ $activites = [
 </main>
 
 <footer class="site-footer">
-  © <?= date("Y") ?> DashMed. Tous droits réservés
+  © <?= date("Y") ?> DashMed. Tous droits réservés.
 </footer>
 </body>
 </html>
