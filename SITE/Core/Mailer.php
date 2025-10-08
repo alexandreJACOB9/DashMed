@@ -5,7 +5,7 @@ final class Mailer
 {
     public static function sendRegistrationEmail(string $to, string $name, ?string $from = null): bool
     {
-        $from = $from ?: 'no-reply@dashmed-site.alwaysdata.net';
+        $from = $from ?: 'dashmed-site@alwaysdata.net';
         $subject = 'Bienvenue sur DashMed';
 
         $headers = [
