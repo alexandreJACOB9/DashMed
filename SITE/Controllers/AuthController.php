@@ -50,7 +50,7 @@ final class AuthController
         if (!$errors) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
             try {
-                if (User::create($old['name'], $old['email'], $hash)) {
+                if (User::create($old['name'], $old['last_name'], $old['email'], $hash)) {
                     // Envoi de mail (ne bloque pas si échec normalement...)
                     $mailSent = Mailer::sendRegistrationEmail($old['email'], $old['name']);
                     $success = $mailSent
