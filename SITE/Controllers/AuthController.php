@@ -88,7 +88,7 @@ final class AuthController
         if (!Csrf::validate($csrf)) {
             $errors[] = 'Session expirée ou jeton CSRF invalide. Veuillez réessayer.';
         }
-        if (!filter_var($old['email'], FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errors[] = 'Adresse email invalide.';
         }
 
