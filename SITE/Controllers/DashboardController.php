@@ -3,7 +3,6 @@ namespace Controllers;
 
 final class DashboardController {
     public function index(): void {
-        session_start();
         if (empty($_SESSION['user'])) {
             header('Location: /login');
             exit;
