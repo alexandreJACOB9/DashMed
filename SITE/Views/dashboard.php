@@ -1,6 +1,5 @@
 <?php
 $csrf_token = \Core\Csrf::token(); // Génère le token CSRF
-session_start();
 
 // Sécurité : si l'utilisateur n'est pas connecté, redirige vers login
 if (empty($_SESSION['user'])) {
