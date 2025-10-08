@@ -76,10 +76,10 @@ final class AuthController
     {
         $errors = [];
         $success = '';
-        $old = [
-            'email' => trim((string)($_POST['email'] ?? '')),
-        ];
-        $password = (string)($_POST['password'] ?? '');
+        
+        $email = trim($_POST['email'] ?? '');
+        $password = $_POST['password'] ?? '';
+
         $csrf = (string)($_POST['csrf_token'] ?? '');
 
         if (!Csrf::validate($csrf)) {
@@ -88,12 +88,13 @@ final class AuthController
         if (!filter_var($old['email'], FILTER_VALIDATE_EMAIL)) {
             $errors[] = 'Adresse email invalide.';
         }
-        if ($password === '') {
-            $errors[] = 'Le mot de passe est obligatoire.';
+
+        if (!$email || !$password) {
+            $errors[] = 'Champs requis.';
         }
 
         if (!$errors) {
-            $user = User::findByEmail($old['email']);
+            $user = User::findByEmail($email);
             if (!$user || !password_verify($password, $user['password'])) {
                 $errors[] = 'Identifiants invalides.';
             } else {
@@ -103,7 +104,7 @@ final class AuthController
                 $_SESSION['user_email'] = (string)$user['email'];
                 // Concatènation de prénom + nom
                 $_SESSION['user_name'] = trim(($user['name'] ?? '') . ' ' . ($user['last_name'] ?? ''));
-                header('Location: /');
+                header('Location: /dashboard');
                 exit;
             }
         }

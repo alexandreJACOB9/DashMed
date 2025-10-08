@@ -44,23 +44,21 @@
 <main class="content">
     <div class="container">
         <h1>Mentions légales</h1>
-        <p class="muted">Dernière mise à jour: 23 septembre 2025</p>
-
+        <p class="muted">Dernière mise à jour: 8 octobre 2025</p>
         <article class="section">
             <h2>Éditeur du site</h2>
             <p>
                 DashMed — Site vitrine et application web de suivi de santé.<br>
                 Responsable de la publication : Équipe DashMed :<br>
                 FABRE Alexis, GHEUX Théo, JACOB Alexandre, TAHA CHAOUI Amir & UYSUN Ali <br>
-                Contact: <a href="mailto:contact@dashmed.example">contact@dashmed.example</a>
-            </p>
+                Contact: <a href="mailto:dashmed-site@alwaysdata.net">dashmed-site@alwaysdata.net</a>            </p>
         </article>
 
         <article class="section">
             <h2>Hébergement</h2>
             <p>
                 Hébergeur: Alwaysdata<br />
-                Téléphone: +33 1 23 45 67 89
+                Téléphone: +33 1 84 16 23 40
             </p>
         </article>
 
@@ -80,7 +78,6 @@
                 Les informations collectées via nos formulaires (inscription, connexion, mot de passe oublié)
                 sont traitées dans le cadre de la fourniture du service. Vous disposez d’un droit d’accès, de rectification,
                 d’effacement, de limitation et d’opposition au traitement des données vous concernant.
-                Pour exercer vos droits, contactez <a href="mailto:privacy@dashmed.example">privacy@dashmed.example</a>.
             </p>
         </article>
 

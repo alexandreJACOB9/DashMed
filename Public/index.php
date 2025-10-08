@@ -106,5 +106,10 @@ if ($path === '/logout' || $path === '/deconnexion') {
     exit;
 }
 
+if ($uri === '/dashboard') {
+    (new \Controllers\DashboardController())->index();
+    exit;
+}
+
 http_response_code(404);
 echo 'Page non trouvée';

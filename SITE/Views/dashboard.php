@@ -38,7 +38,7 @@ $activites = [
       <span class="brand-name">DashMed</span>
     </div>
     <nav class="mainnav" aria-label="Navigation principale">
-      <a href="/dashboard.php" class="active">Accueil</a>
+      <a href="/dashboard" class="active">Accueil</a>
       <a href="/map">Plan du site</a>
       <a href="/legal-notices">Mentions légales</a>
       <a href="/logout">Déconnexion</a>
