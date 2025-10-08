@@ -3,6 +3,7 @@ namespace Controllers;
 
 use Models\User;
 use Core\Csrf;
+use Core\Mailer;
 
 final class AuthController
 {
@@ -49,7 +50,9 @@ final class AuthController
         if (!$errors) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
             try {
-                if (User::create($old['name'], $old['last_name'], $old['email'], $hash)) {
+                if (User::create($old['name'], $old['last_name'], $old['email'], $hash )) {
+                    //envoie du mail à la création
+                    Mailer::sendRegistrationEmail($old['email'], $old['name'], $old['last_name'] ?? '');
                     $success = 'Compte créé. Vous pouvez maintenant vous connecter.';
                     $old = ['name' => '', 'last_name' => '', 'email' => ''];
                 } else {
