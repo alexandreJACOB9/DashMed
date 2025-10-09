@@ -72,6 +72,17 @@ final class Router
             (new LegalNoticesController())->show();
             exit;
         }
+
+        // Réinitialisation du mot de passe (page avec formulaire de nouveau mot de passe)
+        if ($this->path === '/reset-password') {
+            $controller = new ResetPasswordController();
+            if ($this->method === 'POST') {
+                $controller->submit();
+            } else {
+                $controller->showForm();
+            }
+            exit;
+        }
     }
 
     private function handleAuthRoutes(): void
