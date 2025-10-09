@@ -26,3 +26,9 @@ Alexandre:
 5) Explique moi cette partie du code de register()
 6) Ecrit de la documentation de ce code
 7) Rédige moi des textes génératif (utiliser pour les mails notament)
+
+Ali: 
+1)fais moi la phpdoc de ce code
+2)voici mon modele mvc actuel que me suggere tu de faire pour l'ameliorer
+3)Quelle est la meilleur solution pour ne pas répeter le html dans chaque fichier php (ex: le header, footer)
+4)Propose moi un exemple de classe php avec le header footer head gérer de facon dynamique
