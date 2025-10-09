@@ -37,7 +37,7 @@ final class Mailer
     //envoie mail pour reset mdp
     public static function sendPasswordResetEmail(string $to, string $displayName, string $resetUrl): bool
     {
-        $from = 'no-reply@dashmed-site.alwaysdata.net'; // adapte à ton domaine
+        $from = 'dashmed-site@alwaysdata.net'; // adapte à ton domaine
         $subject = 'Réinitialisation de votre mot de passe';
         $headers = [
             'From: DashMed <' . $from . '>',
