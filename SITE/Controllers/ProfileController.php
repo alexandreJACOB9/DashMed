@@ -10,9 +10,7 @@ final class ProfileController
             header('Location: /login');
             exit;
         }
-        $user = $_SESSION['user']; // id, email, name (ou découper si besoin)
-        // Si tu as stocké séparément first_name / last_name en session, adapte ici.
-        // Exemple découpe simple :
+        $user = $_SESSION['user']; // id, email, name
         $parts = preg_split('/\s+/', trim($user['name'] ?? ''), 2);
         $first = $parts[0] ?? '';
         $last  = $parts[1] ?? '';
