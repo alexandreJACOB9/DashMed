@@ -1,12 +1,40 @@
 <?php
+/**
+ * Fichier : dashboard.php
+ *
+ * Page du tableau de bord utilisateur pour l'application DashMed.
+ * Affiche les statistiques, les activités récentes et propose des actions rapides.
+ * Sécurise l'accès via session utilisateur et token CSRF.
+ * Utilise les partials pour le head et le footer.
+ *
+ * @package DashMed
+ * @version 1.1
+ * @author FABRE Alexis, GHEUX Théo, JACOB Alexandre, TAHA CHAOUI Amir, UYSUN Ali
+ */
+
+/**
+ * Génère le token CSRF pour la sécurité des formulaires.
+ * @var string $csrf_token
+ */
 $csrf_token = \Core\Csrf::token();
 
-// Sécurité : redirection si non connecté
+/**
+ * Vérifie la présence de la session utilisateur.
+ * Redirige vers la page de connexion si l'utilisateur n'est pas authentifié.
+ */
 if (empty($_SESSION['user'])) {
     header('Location: /login');
     exit;
 }
-// --- Variables dynamiques transmises au template ---
+
+/**
+ * Variables dynamiques pour le template de la page.
+ * 
+ * @var string $pageTitle       Titre de la page (balise <title>)
+ * @var string $pageDescription Description pour la balise <meta name="description">
+ * @var array  $pageStyles      Liste des feuilles de style spécifiques à la page
+ * @var array  $pageScripts     Liste des scripts spécifiques à la page
+ */
 $pageTitle = "Tableau de bord";
 $pageDescription = "Page du dashboard accessible une fois connecter, espace pour vorir l'activité et les informations des médecins";
 $pageStyles = [
@@ -15,11 +43,18 @@ $pageStyles = [
 $pageScripts = [
     "/assets/script/header_responsive.js"
 ];
-// Exemple de données dynamiques
+
+/**
+ * Activités récentes affichées sur le dashboard.
+ * 
+ * @var array $activites Chaque élément est un tableau associatif avec les clés :
+ *                       - 'label' : string, description de l'activité
+ *                       - 'date'  : string, date de l'activité au format JJ/MM/AAAA
+ */
 $activites = [
     ["label" => "Rdv avec Dr. Smith", "date" => "03/12/2025"],
-["label" => "Résultats prise de sang", "date" => "02/12/2025"],
-["label" => "Prescription médicaments", "date" => "01/12/2025"]
+    ["label" => "Résultats prise de sang", "date" => "02/12/2025"],
+    ["label" => "Prescription médicaments", "date" => "01/12/2025"]
 ];
 ?>
 <!doctype html>
@@ -53,7 +88,7 @@ $activites = [
 <main>
     <div class="container">
         <section class="grid">
-            <!-- Bloc Aperçu -->
+            <!-- Bloc Aperçu du dashboard -->
             <article class="panel panel-overview">
                 <h2 class="panel-title">Aperçu du Dashboard</h2>
                 <p class="panel-intro">
@@ -73,7 +108,7 @@ $activites = [
                 </div>
             </article>
 
-            <!-- Bloc Activités -->
+            <!-- Bloc Activités récentes -->
             <aside class="panel-activity">
                 <h2 class="panel-title">Activités récentes</h2>
                 <ul class="activity-list">
@@ -87,19 +122,22 @@ $activites = [
             </aside>
         </section>
 
-        <!-- Actions rapides -->
+        <!-- Section Actions rapides -->
         <section class="quick-actions-wrapper">
             <div class="quick-actions">
                 <h3 class="quick-title">Actions rapides</h3>
                 <div class="actions-row">
+                    <!-- Formulaire pour planifier un rendez-vous -->
                     <form method="post" action="/appointment">
                         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8') ?>">
                         <button class="action-btn" type="submit">Planifier un rendez-vous</button>
                     </form>
+                    <!-- Formulaire pour afficher les résultats des tests -->
                     <form method="post" action="/results">
                         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8') ?>">
                         <button class="action-btn" type="submit">Afficher les résultats des tests</button>
                     </form>
+                    <!-- Formulaire pour demander une ordonnance -->
                     <form method="post" action="/prescription">
                         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8') ?>">
                         <button class="action-btn" type="submit">Demander une ordonnance</button>
