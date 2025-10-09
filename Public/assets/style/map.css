@@ -78,13 +78,3 @@ h1 {
     border-radius: 6px;
     padding: 2px 6px;
 }
-
-/* Responsive */
-@media (max-width: 720px) {
-    .mainnav {
-        display: none;
-    }
-    .topbar .container {
-        justify-content: space-between;
-    }
-}

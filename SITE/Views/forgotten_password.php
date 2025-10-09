@@ -39,6 +39,9 @@
 
         <a href="/login" class="login-btn">Connexion</a>
         <button class="burger-menu" aria-label="Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
     </div>
 </header>

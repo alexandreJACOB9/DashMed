@@ -24,12 +24,6 @@ final class AutoLoader
         return static::load($file);
     }
 
-    public static function loadExceptions($className)
-    {
-        $file = Constant::exceptionsDirectory() . "$className.php";
-        return static::load($file);
-    }
-
     public static function loadModel($className)
     {
         if (str_contains($className, '\\')) {
@@ -75,7 +69,6 @@ final class AutoLoader
 //On utilise ici les fonctions de cette classe pour charger automatiquement les classes.
 // Chaque ligne enregistre un autoloader pour un fichier précis
 spl_autoload_register('AutoLoader::loadCore');
-spl_autoload_register('AutoLoader::loadExceptions');
 spl_autoload_register('AutoLoader::loadModel');
 spl_autoload_register('AutoLoader::loadView');
 spl_autoload_register('AutoLoader::loadController');

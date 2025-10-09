@@ -97,13 +97,3 @@
 .link-strong:hover {
     text-decoration: underline;
 }
-
-/* Responsive */
-@media (max-width: 720px) {
-    .mainnav {
-        display: none;
-    }
-    .topbar .container {
-        justify-content: space-between;
-    }
-}

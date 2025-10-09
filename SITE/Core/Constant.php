@@ -12,8 +12,6 @@ final class Constant
     const MODEL_DIRECTORY      = '/Models/';
     const CORE_DIRECTORY       = '/Core/';
     const CONTROLLER_DIRECTORY = '/Controllers/';
-    const EXCEPTION_DIRECTORY = '/Exception/';
-
 
     //Retourne les chemins absolu pour chaque dossier du projet
     public static function rootDirectory()
@@ -25,11 +23,6 @@ final class Constant
     public static function coreDirectory()
     {
         return self::rootDirectory() . self::CORE_DIRECTORY;
-    }
-
-    public static function exceptionsDirectory()
-    {
-        return self::rootDirectory() . self::EXCEPTION_DIRECTORY;
     }
 
     public static function viewDirectory()
