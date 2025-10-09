@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Mentions légales de DashMed !">
+    <meta name="description" content="Toute les mentions légales de DashMed">
     <title>Mentions légales</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

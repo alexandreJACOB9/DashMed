@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Mot de passe oublié ? Changez-le !">
+    <meta name="description" content="Page de mot de passe oublié, envoie un lien par mail pour le changer !">
     <title>Connexion</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

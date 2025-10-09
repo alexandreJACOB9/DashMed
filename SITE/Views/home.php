@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="DashMed : votre tableau de bord santé simple et moderne !">
+    <meta name="description" content="Page d'acceuil de DashMed : votre tableau de bord santé simple et moderne pour la médecine">
     <title>Accueil</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
