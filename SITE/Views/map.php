@@ -1,8 +1,19 @@
+<!--
+    Fichier : map.php
+
+    Page du plan du site de l'application DashMed.
+    Liste l'ensemble des pages accessibles pour faciliter la navigation.
+    La structure inclut le header (dupliqué ici), la liste des liens, et le pied de page inclus via partial.
+
+    @package DashMed
+    @author  FABRE Alexis, GHEUX Théo, JACOB Alexandre, TAHA CHAOUI Amir, UYSUN Ali
+    @version 1.0
+-->
 <!doctype html>
 <html lang="fr">
 <?php
 $pageTitle = "Plan du site";
-$pageDescription = "Plan du site de DashMed !";
+$pageDescription = "Plan du site de DashMed";
 $pageStyles = ["/assets/style/map.css"];
 $pageScripts = [];
 include __DIR__ . '/partials/head.php';
