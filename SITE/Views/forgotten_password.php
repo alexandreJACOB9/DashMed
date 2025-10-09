@@ -17,12 +17,6 @@
     <link rel="stylesheet" href="/assets/style/body_main_container.css" />
     <script src="/assets/script/header_responsive.js" defer></script>
     <link rel="icon" href="/assets/images/logo.png">
-    <style>
-        .alert { padding: 12px 14px; border-radius: 6px; margin-bottom: 16px; }
-        .alert-error { background:#fde2e1; color:#8b1a15; border:1px solid #f7b4b1; }
-        .alert-success { background:#e6f6e6; color:#256029; border:1px solid #b5e0b7; }
-        .errors { margin:0; padding-left:18px; }
-    </style>
 </head>
 <body>
 <header class="topbar">
