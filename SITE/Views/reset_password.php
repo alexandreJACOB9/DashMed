@@ -2,9 +2,9 @@
 <!doctype html>
 <html lang="fr">
 <?php
-$pageTitle = "Plan du site";
-$pageDescription = "Plan du site de DashMed !";
-$pageStyles = ["/assets/style/map.css"];
+$pageTitle = "DashMed - Réinitialisation";
+$pageDescription = "Page pour réinitialiser le mot de passe oublié et définir un nouveau";
+$pageStyles = ["/assets/style/forgotten_password.css"];
 $pageScripts = [];
 include __DIR__ . '/partials/head.php';
 ?>
