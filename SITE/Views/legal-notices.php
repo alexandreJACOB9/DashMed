@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Mentions légales de DashMed !">
-    <title>DashMed - Mentions légales</title>
+    <title>Mentions légales</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +28,7 @@
         <nav class="mainnav" aria-label="Navigation principale">
             <a href="/">Accueil</a>
             <a href="/map">Plan du site</a>
-            <a href="/legal" class="current">Mentions légales</a>
+            <a href="/legal-notices" class="current">Mentions légales</a>
         </nav>
 
         <a href="/login" class="login-btn">Connexion</a>

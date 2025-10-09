@@ -13,7 +13,7 @@ $last  = $parts[1] ?? '';
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title>Profil - DashMed</title>
+    <title>Profil</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="Consultez votre profil DashMed !">
     <link rel="preconnect" href="https://fonts.googleapis.com">
