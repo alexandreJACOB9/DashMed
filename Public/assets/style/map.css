@@ -1,22 +1,18 @@
-/* Content */
 .content {
     padding: 28px 0 18px;
 }
 
-/* Titres principaux */
 h1 {
     margin: 8px 0 8px;
     font-size: 26px;
 }
 
-/* Texte secondaire */
 .muted {
     color: #6f7580;
     font-size: 12px;
     margin: 0 0 18px;
 }
 
-/* Sitemap */
 .sitemap {
     border: 1px solid var(--line);
     border-radius: 12px;
@@ -62,7 +58,6 @@ h1 {
     font-weight: 600;
 }
 
-/* Tips */
 .tips {
     margin-top: 14px;
     background: #f7fafb;
