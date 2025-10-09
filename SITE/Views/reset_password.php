@@ -1,29 +1,16 @@
 <?php $csrf_token = \Core\Csrf::token(); ?>
 <!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>DashMed - Réinitialisation</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Page pour réinitialiser le mot de passe oublié et définir un nouveau">
-
-    <link rel="stylesheet" href="/assets/style/forgotten_password.css">
-</head>
+<?php
+$pageTitle = "Plan du site";
+$pageDescription = "Plan du site de DashMed !";
+$pageStyles = ["/assets/style/map.css"];
+$pageScripts = [];
+include __DIR__ . '/partials/head.php';
+?>
 <body>
-<header class="topbar">
-    <div class="container">
-        <div class="brand">
-            <img class="logo" src="/assets/images/logo.png" alt="logo">
-            <span class="brand-name">DashMed</span>
-        </div>
-        <nav class="mainnav" aria-label="Navigation principale">
-            <a href="/">Accueil</a>
-            <a href="/map">Plan du site</a>
-            <a href="/legal-notices">Mentions légales</a>
-        </nav>
-        <a href="/login" class="login-btn">Connexion</a>
-    </div>
-</header>
+    
+<?php include __DIR__ . '/partials/header.php'; ?>
 
 <main class="main">
     <section class="hero">
@@ -59,8 +46,6 @@
     </section>
 </main>
 
-<footer class="footer">
-    <div class="container">© 2025 DashMed. Tous droits réservés</div>
-</footer>
+<?php include __DIR__ . '/partials/footer.php'; ?>
 </body>
 </html>
