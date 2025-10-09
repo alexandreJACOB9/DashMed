@@ -1,14 +1,20 @@
-<!--
-    Fichier : index.php
-
-    Page d'accueil de l'application DashMed.
-    Présente le service et ses avantages, invite à l'inscription ou à la connexion.
-    La structure inclut l'en-tête (dupliqué ici), la navigation principale, une section héro, les fonctionnalités clés et le pied de page.
-
-    @package DashMed
-    @author  FABRE Alexis, GHEUX Théo, JACOB Alexandre, TAHA CHAOUI Amir, UYSUN Ali
-    @version 1.0
--->
+/**
+ * Fichier : index.php
+ * Page d'accueil de l'application DashMed.
+ *
+ * Présente le service et ses avantages, invite à l'inscription ou à la connexion.
+ * Utilise la structure dynamique avec head, header et footer inclus.
+ *
+ * Variables dynamiques :
+ * - $pageTitle       (string)  Titre de la page
+ * - $pageDescription (string)  Description pour les métadonnées
+ * - $pageStyles      (array)   Styles CSS spécifiques
+ * - $pageScripts     (array)   Scripts JS spécifiques
+ *
+ * @package DashMed
+ * @version 1.0
+ * @author  FABRE Alexis, GHEUX Théo, JACOB Alexandre, TAHA CHAOUI Amir, UYSUN Ali
+ */
 <!doctype html>
 <html lang="fr">
 <?php
