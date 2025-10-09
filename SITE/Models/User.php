@@ -9,7 +9,7 @@ final class User
     public static function emailExists(string $email): bool
     {
         $pdo = Database::getConnection();
-        $st = $pdo->prepare('SELECT 1 FROM users WHERE email = ? LIMIT 1');
+        $st = $pdo->prepare('SELECT 1 FROM users WHERE LOWER(email) = LOWER(?) LIMIT 1');
         $st->execute([$email]);
         return (bool) $st->fetchColumn();
     }
