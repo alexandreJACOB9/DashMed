@@ -13,63 +13,80 @@ $last  = $parts[1] ?? '';
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title>Profil</title>
+    <title>Profil - DashMed</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/style/body_main_container.css">
     <link rel="stylesheet" href="/assets/style/header.css">
     <link rel="stylesheet" href="/assets/style/footer.css">
     <link rel="stylesheet" href="/assets/style/profile.css">
+    <script src="/assets/script/header_responsive.js" defer></script>
     <link rel="icon" href="/assets/images/logo.png">
 </head>
 <body>
 <header class="topbar">
     <div class="container">
-        <a class="brand" href="/"><img src="/assets/images/logo.png" alt="Logo" class="logo" width="34" height="34"><span class="brand-name">DashMed</span></a>
-        <nav class="mainnav">
+        <div class="brand">
+            <img src="/assets/images/logo.png" alt="Logo" class="logo">
+            <span class="brand-name">DashMed</span>
+        </div>
+
+        <nav class="mainnav" aria-label="Navigation principale">
             <a href="/dashboard">Accueil</a>
             <a href="/map">Plan du site</a>
             <a href="/legal-notices">Mentions légales</a>
-            <?php if (!empty($_SESSION['user'])): ?>
-                <a href="/profile" class="active">Profil</a>
-                <a href="/logout">Déconnexion</a>
-            <?php else: ?>
-                <a href="/login">Connexion</a>
-            <?php endif; ?>
+            <a href="/profile" class="current">Profil</a>
+            <a href="/logout" class="nav-login">Déconnexion</a>
         </nav>
+
+        <a href="/logout" class="login-btn">Déconnexion</a>
+
+        <button class="burger-menu" aria-label="Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
 </header>
 
-<main class="profile-wrapper">
-    <h1>Profil</h1>
+<main>
+    <div class="container">
+        <h1 class="profile-title">Profil</h1>
 
-    <div class="profile-card">
-        <div class="avatar">
-            <div class="avatar-circle" aria-hidden="true">👤</div>
+        <div class="profile-card">
+            <div class="avatar">
+                <div class="avatar-circle" aria-hidden="true">👤</div>
+            </div>
+            <table class="info-table" aria-describedby="profil-infos">
+                <tbody>
+                <tr>
+                    <th scope="row">Prénom</th>
+                    <td><?= htmlspecialchars($first) ?></td>
+                </tr>
+                <tr>
+                    <th scope="row">Nom</th>
+                    <td><?= htmlspecialchars($last) ?></td>
+                </tr>
+                <tr>
+                    <th scope="row">Adresse email</th>
+                    <td class="email-cell">
+                        <span><?= htmlspecialchars($user['email']) ?></span>
+                        <a class="btn-edit" href="/profile/edit">Modifier</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <a class="btn-delete">Supprimer mon compte</a>
         </div>
-        <table class="info-table" aria-describedby="profil-infos">
-            <tbody>
-            <tr>
-                <th scope="row">Prénom</th>
-                <td><?= htmlspecialchars($first) ?></td>
-            </tr>
-            <tr>
-                <th scope="row">Nom</th>
-                <td><?= htmlspecialchars($last) ?></td>
-            </tr>
-            <tr>
-                <th scope="row">Adresse email</th>
-                <td class="email-cell">
-                    <span><?= htmlspecialchars($user['email']) ?></span>
-                    <a class="btn-edit" href="/profile/edit">Modifier</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
     </div>
 </main>
 
 <footer class="footer">
-    <p>© 2025 DashMed. Tous droits réservés</p>
+    <div class="container">
+        © 2025 DashMed. Tous droits réservés
+    </div>
 </footer>
 </body>
 </html>
