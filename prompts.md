@@ -1,6 +1,6 @@
-**Sources utilisées lors de la réalisation du projet :**
+## Sources utilisées lors de la réalisation du projet :
 
-Prompts IA réalisées lors de la réalisation du projet 
+## Prompts IA réalisées lors de la réalisation du projet 
 
 1)Voici le projet de mon groupe, qui a pour but de créer un DashMed fonctionnel. Pour l’instant, nous nous concentrons sur l’inscription, la connexion et la reconnexion. Nous avons les moyens de relier une base de données au code, mais nous ne pouvons pas l’installer sur nos ordinateurs professionnels, pourquoi?
 
