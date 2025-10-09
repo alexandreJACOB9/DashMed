@@ -55,10 +55,6 @@
                     <a class="btn btn-ghost" href="/login">Se connecter</a>
                 </div>
             </div>
-            <div class="hero__illus" aria-hidden="true">
-                <div class="card demo1"></div>
-                <div class="card demo2"></div>
-            </div>
         </div>
     </section>
 
