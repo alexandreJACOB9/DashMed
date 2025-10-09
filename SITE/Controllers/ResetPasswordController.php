@@ -3,7 +3,6 @@ namespace Controllers;
 
 use Core\Csrf;
 use Core\Database;
-use PDO;
 
 final class ResetPasswordController
 {
@@ -12,7 +11,8 @@ final class ResetPasswordController
         $errors = [];
         $success = '';
 
-        $email = trim((string)($_GET['email'] ?? ''));
+        // Normaliser l'email
+        $email = strtolower(trim((string)($_GET['email'] ?? '')));
         $token = (string)($_GET['token'] ?? '');
 
         if (!$this->isValidToken($email, $token)) {
@@ -27,21 +27,15 @@ final class ResetPasswordController
         $errors = [];
         $success = '';
 
-        $csrf = (string)($_POST['csrf_token'] ?? '');
-        $email = trim((string)($_POST['email'] ?? ''));
-        $token = (string)($_POST['token'] ?? '');
+        $csrf     = (string)($_POST['csrf_token'] ?? '');
+        $email    = strtolower(trim((string)($_POST['email'] ?? '')));
+        $token    = (string)($_POST['token'] ?? '');
         $password = (string)($_POST['password'] ?? '');
-        $password_confirm = (string)($_POST['password_confirm'] ?? '');
+        $confirm  = (string)($_POST['password_confirm'] ?? '');
 
-        if (!Csrf::validate($csrf)) {
-            $errors[] = 'Session expirée ou jeton CSRF invalide.';
-        }
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = 'Adresse email invalide.';
-        }
-        if ($password !== $password_confirm) {
-            $errors[] = 'Mots de passe différents.';
-        }
+        if (!Csrf::validate($csrf))                            $errors[] = 'Session expirée ou jeton CSRF invalide.';
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))        $errors[] = 'Adresse email invalide.';
+        if ($password !== $confirm)                            $errors[] = 'Mots de passe différents.';
         if (
             strlen($password) < 12 ||
             !preg_match('/[A-Z]/', $password) ||
@@ -63,20 +57,25 @@ final class ResetPasswordController
             try {
                 $pdo->beginTransaction();
 
-                // Met à jour le mot de passe utilisateur
+                // Met à jour le mot de passe utilisateur (insensible à la casse)
                 $hash = password_hash($password, PASSWORD_DEFAULT);
-                $u = $pdo->prepare('UPDATE users SET password = ?, updated_at = NOW() WHERE email = ?');
+                $u = $pdo->prepare('UPDATE users SET password = ?, updated_at = NOW() WHERE LOWER(email) = LOWER(?)');
                 $u->execute([$hash, $email]);
+                $updated = $u->rowCount();
 
-                // Invalide le token
-                $t = $pdo->prepare('UPDATE password_resets SET used_at = NOW() WHERE email = ? AND token_hash = ? AND used_at IS NULL');
-                $t->execute([$email, $tokenHash]);
+                if ($updated > 0) {
+                    // Invalide le token seulement si update OK
+                    $t = $pdo->prepare('UPDATE password_resets SET used_at = NOW() WHERE LOWER(email) = LOWER(?) AND token_hash = ? AND used_at IS NULL');
+                    $t->execute([$email, $tokenHash]);
 
-                $pdo->commit();
-
-                $success = 'Votre mot de passe a été réinitialisé. Vous pouvez vous connecter.';
-                // Option: rediriger
-                // header('Location: /login'); exit;
+                    $pdo->commit();
+                    $success = 'Votre mot de passe a été réinitialisé. Vous pouvez vous connecter.';
+                } else {
+                    // Aucune ligne modifiée -> email non trouvé tel qu’envoyé
+                    $pdo->rollBack();
+                    error_log(sprintf('[RESET] No user row updated for email=%s', $email));
+                    $errors[] = 'Une erreur technique est survenue lors de la réinitialisation. Veuillez réessayer.';
+                }
             } catch (\Throwable $e) {
                 $pdo->rollBack();
                 error_log(sprintf('[RESET] %s in %s:%d', $e->getMessage(), $e->getFile(), $e->getLine()));
@@ -94,10 +93,11 @@ final class ResetPasswordController
         $pdo = Database::getConnection();
         $tokenHash = hash('sha256', $token);
 
+        // Vérif  token insensible à la casse sur l'email
         $st = $pdo->prepare('
             SELECT 1
             FROM password_resets
-            WHERE email = ?
+            WHERE LOWER(email) = LOWER(?)
               AND token_hash = ?
               AND used_at IS NULL
               AND expires_at > NOW()
