@@ -1,46 +1,26 @@
+<!--
+    Fichier : index.php
+
+    Page d'accueil de l'application DashMed.
+    Présente le service et ses avantages, invite à l'inscription ou à la connexion.
+    La structure inclut l'en-tête (dupliqué ici), la navigation principale, une section héro, les fonctionnalités clés et le pied de page.
+
+    @package DashMed
+    @author  FABRE Alexis, GHEUX Théo, JACOB Alexandre, TAHA CHAOUI Amir, UYSUN Ali
+    @version 1.0
+-->
 <!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Page d'acceuil de DashMed : votre tableau de bord santé simple et moderne pour la médecine">
-    <title>Accueil</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="/assets/style/index.css" />
-    <link rel="stylesheet" href="/assets/style/footer.css" />
-    <link rel="stylesheet" href="/assets/style/header.css" />
-    <link rel="stylesheet" href="/assets/style/body_main_container.css" />
-    <script src="/assets/script/header_responsive.js" defer></script>
-    <link rel="icon" href="/assets/images/logo.png">
-</head>
+<?php
+// Variables dynamiques transmises depuis le contrôleur
+$pageTitle = $pageTitle ?? "Accueil";
+$pageDescription = $pageDescription ?? "Page d'accueil de DashMed : votre tableau de bord santé simple et moderne pour la médecine";
+$pageStyles = $pageStyles ?? ["/assets/style/index.css"];
+$pageScripts = $pageScripts ?? [];
+include __DIR__ . '/partials/head.php';
+?>
 <body>
-<header class="topbar">
-    <div class="container">
-        <div class="brand">
-            <img class="logo" src="/assets/images/logo.png" alt="logo">
-            <span class="brand-name">DashMed</span>
-        </div>
-
-        <nav class="mainnav" aria-label="Navigation principale">
-            <a href="/" class="current">Accueil</a>
-            <a href="/map">Plan du site</a>
-            <a href="/legal-notices">Mentions légales</a>
-        </nav>
-
-        <a href="/login" class="login-btn">Connexion</a>
-
-        <button class="burger-menu" aria-label="Menu" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </div>
-</header>
-
+<?php include __DIR__ . '/partials/header.php'; ?>
 <main>
     <section class="hero">
         <div class="container hero__inner">
@@ -82,10 +62,6 @@
     </section>
 </main>
 
-<footer class="footer">
-    <div class="container">
-        © 2025 DashMed. Tous droits réservés
-    </div>
-</footer>
+<?php include __DIR__ . '/partials/footer.php'; ?>
 </body>
 </html>

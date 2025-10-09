@@ -1,45 +1,26 @@
+<!--
+    Fichier : legal-notices.php
+
+    Page des mentions légales de l'application DashMed.
+    Fournit les informations réglementaires concernant l'éditeur, l'hébergement, la propriété intellectuelle, la confidentialité et la responsabilité.
+    La structure inclut le header (dupliqué ici), le contenu légal, et le pied de page inclus via partial.
+
+    @package DashMed
+    @author  FABRE Alexis, GHEUX Théo, JACOB Alexandre, TAHA CHAOUI Amir, UYSUN Ali
+    @version 1.0
+-->
 <!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Toute les mentions légales de DashMed">
-    <title>Mentions légales</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="/assets/style/legal_notices.css" />
-    <link rel="stylesheet" href="/assets/style/footer.css" />
-    <link rel="stylesheet" href="/assets/style/header.css" />
-    <link rel="stylesheet" href="/assets/style/body_main_container.css" />
-    <script src="/assets/script/header_responsive.js" defer></script>
-    <link rel="icon" href="/assets/images/logo.png">
-</head>
+<?php
+$pageTitle = "Mentions légales";
+$pageDescription = "Toute les mentions légales de DashMed";
+$pageStyles = ["/assets/style/legal_notices.css"];
+$pageScripts = [];
+include __DIR__ . '/partials/head.php';
+?>
 <body>
-<header class="topbar">
-    <div class="container">
-        <div class="brand">
-            <img class="logo" src="/assets/images/logo.png" alt="logo">
-            <span class="brand-name">DashMed</span>
-        </div>
-
-        <nav class="mainnav" aria-label="Navigation principale">
-            <a href="/">Accueil</a>
-            <a href="/map">Plan du site</a>
-            <a href="/legal-notices" class="current">Mentions légales</a>
-        </nav>
-
-        <a href="/login" class="login-btn">Connexion</a>
-
-        <button class="burger-menu" aria-label="Menu" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </div>
-</header>
+    
+<?php include __DIR__ . '/partials/header.php'; ?>
 
 <main class="content">
     <div class="container">
@@ -51,7 +32,8 @@
                 DashMed — Site vitrine et application web de suivi de santé.<br>
                 Responsable de la publication : Équipe DashMed :<br>
                 FABRE Alexis, GHEUX Théo, JACOB Alexandre, TAHA CHAOUI Amir & UYSUN Ali <br>
-                Contact: <a href="mailto:dashmed-site@alwaysdata.net">dashmed-site@alwaysdata.net</a>            </p>
+                Contact: <a href="mailto:dashmed-site@alwaysdata.net">dashmed-site@alwaysdata.net</a>
+            </p>
         </article>
 
         <article class="section">
@@ -100,8 +82,6 @@
     </div>
 </main>
 
-<footer class="footer">
-    <div class="container">© 2025 DashMed. Tous droits réservés</div>
-</footer>
+<?php include __DIR__ . '/partials/footer.php'; ?>
 </body>
 </html>

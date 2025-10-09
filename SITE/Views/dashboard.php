@@ -6,7 +6,15 @@ if (empty($_SESSION['user'])) {
     header('Location: /login');
     exit;
 }
-
+// --- Variables dynamiques transmises au template ---
+$pageTitle = "Tableau de bord";
+$pageDescription = "Page du dashboard accessible une fois connecter, espace pour vorir l'activité et les informations des médecins";
+$pageStyles = [
+    "/assets/style/dashboard.css"
+];
+$pageScripts = [
+    "/assets/script/header_responsive.js"
+];
 // Exemple de données dynamiques
 $activites = [
     ["label" => "Rdv avec Dr. Smith", "date" => "03/12/2025"],
@@ -16,21 +24,8 @@ $activites = [
 ?>
 <!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>Dashboard</title>
-    <meta name="description" content="Page du dashboard accessible une fois connecter, espace pour vorir l'activité et les informations des médecins">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/style/body_main_container.css">
-    <link rel="stylesheet" href="/assets/style/header.css">
-    <link rel="stylesheet" href="/assets/style/footer.css">
-    <link rel="stylesheet" href="/assets/style/dashboard.css">
-    <script src="/assets/script/header_responsive.js" defer></script>
-    <link rel="icon" href="/assets/images/logo.png">
-</head>
+<?php include __DIR__ . '/partials/head.php'; ?>
+
 <body>
 <header class="topbar">
     <div class="container">
@@ -115,10 +110,6 @@ $activites = [
     </div>
 </main>
 
-<footer class="footer">
-    <div class="container">
-        © <?= date("Y") ?> DashMed. Tous droits réservés
-    </div>
-</footer>
+<?php include __DIR__ . '/partials/footer.php'; ?>
 </body>
 </html>
