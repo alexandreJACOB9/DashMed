@@ -28,7 +28,7 @@
 
 11) Peux-tu rendre ce code css un peu plus responsive sur téléphon
 
-12) Commnent corriger ce code pour garantir que le footer reste bien accroché en bas de page ? 
+12) Comment corriger ce code pour garantir que le footer reste bien accroché en bas de page ? 
 
 13) Peux tu me corriger mailer() ?"
    
