@@ -26,6 +26,7 @@ Alexandre:
 5) Explique moi cette partie du code de register()
 6) Ecrit de la documentation de ce code
 7) Rédige moi des textes génératif (utiliser pour les mails notament)
+8) Par rapport à ces fichiers... dis moi ce qu'il manque pour que le bouton réinitialiser mdp soit opérationnel
 
 Ali: 
 1)fais moi la phpdoc de ce code
