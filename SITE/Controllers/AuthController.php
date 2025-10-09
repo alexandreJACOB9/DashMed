@@ -28,11 +28,18 @@ final class AuthController
         $password_confirm = (string)($_POST['password_confirm'] ?? '');
         $csrf             = (string)($_POST['csrf_token'] ?? '');
 
-        if (!Csrf::validate($csrf))              $errors[] = 'Session expirée ou jeton CSRF invalide. Veuillez réessayer.';
-        if ($old['name'] === '' || mb_strlen($old['name']) < 2)       $errors[] = 'Prénom invalide.';
-        if ($old['last_name'] === '' || mb_strlen($old['last_name']) < 2) $errors[] = 'Nom invalide.';
-        if (!filter_var($old['email'], FILTER_VALIDATE_EMAIL))        $errors[] = 'Adresse email invalide.';
-        if ($password !== $password_confirm)                          $errors[] = 'Mots de passe différents.';
+        if (!Csrf::validate($csrf)) {
+            $errors[] = 'Session expirée ou jeton CSRF invalide.';
+        }
+
+        if (!filter_var($old['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors[] = 'Adresse email invalide.';
+        }
+
+        if ($password !== $password_confirm) {
+            $errors[] = 'Mots de passe différents.';
+        }
+
         if (
             strlen($password) < 12 ||
             !preg_match('/[A-Z]/', $password) ||
@@ -71,51 +78,54 @@ final class AuthController
     public function showLogin(): void
     {
         $errors = [];
-        $success = '';
+        // Affiche un message si on arrive depuis une réinitialisation réussie
+        $success = (isset($_GET['reset']) && $_GET['reset'] === '1')
+            ? 'Votre mot de passe a été réinitialisé. Vous pouvez vous connecter.'
+            : '';
         $old = ['email' => ''];
         require __DIR__ . '/../Views/auth/login.php';
     }
 
     public function login(): void
     {
-         if (session_status() !== PHP_SESSION_ACTIVE) session_start();
-    $errors = [];
-    $success = '';
-    $email = strtolower(trim((string)($_POST['email'] ?? '')));
-    $password = (string)($_POST['password'] ?? '');
-    $csrf = (string)($_POST['csrf_token'] ?? '');
-    $old = ['email' => $email];
+        if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+        $errors = [];
+        $success = '';
+        $email = strtolower(trim((string)($_POST['email'] ?? '')));
+        $password = (string)($_POST['password'] ?? '');
+        $csrf = (string)($_POST['csrf_token'] ?? '');
+        $old = ['email' => $email];
 
-    if (!Csrf::validate($csrf)) {
-        $errors[] = 'Session expirée ou jeton CSRF invalide. Veuillez réessayer.';
-    }
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = 'Adresse email invalide.';
-    }
-    if ($email === '' || $password === '') {
-        $errors[] = 'Champs requis.';
-    }
-
-    if (!$errors) {
-        $user = User::findByEmail($email);
-        if (!$user || !password_verify($password, $user['password'])) {
-            $errors[] = 'Identifiants invalides.';
-        } else {
-            session_regenerate_id(true);
-            // Normalise le nom (prend name ou first_name)
-            $first = $user['name'] ?? ($user['first_name'] ?? '');
-            $last  = $user['last_name'] ?? '';
-            $_SESSION['user'] = [
-                'id'    => (int)$user['user_id'],
-                'email' => $user['email'],
-                'name'  => trim($first.' '.$last)
-            ];
-            header('Location: /dashboard');
-            exit;
+        if (!Csrf::validate($csrf)) {
+            $errors[] = 'Session expirée ou jeton CSRF invalide. Veuillez réessayer.';
         }
-    }
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = 'Adresse email invalide.';
+        }
+        if ($email === '' || $password === '') {
+            $errors[] = 'Champs requis.';
+        }
 
-    require __DIR__ . '/../Views/auth/login.php';
+        if (!$errors) {
+            $user = User::findByEmail($email);
+            if (!$user || !password_verify($password, $user['password'])) {
+                $errors[] = 'Identifiants invalides.';
+            } else {
+                session_regenerate_id(true);
+                // Normalise le nom (prend name ou first_name)
+                $first = $user['name'] ?? ($user['first_name'] ?? '');
+                $last  = $user['last_name'] ?? '';
+                $_SESSION['user'] = [
+                    'id'    => (int)$user['user_id'],
+                    'email' => $user['email'],
+                    'name'  => trim($first.' '.$last)
+                ];
+                header('Location: /dashboard');
+                exit;
+            }
+        }
+
+        require __DIR__ . '/../Views/auth/login.php';
     }
 
     public function logout(): void
