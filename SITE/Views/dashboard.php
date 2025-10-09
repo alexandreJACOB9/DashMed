@@ -40,8 +40,6 @@ $activites = [
 
         <nav class="mainnav" aria-label="Navigation principale">
             <a href="/dashboard" class="current">Accueil</a>
-            <a href="/map">Plan du site</a>
-            <a href="/legal-notices">Mentions légales</a>
             <a href="/profile">Profil</a>
             <a href="/logout" class="nav-login">Déconnexion</a>
         </nav>
