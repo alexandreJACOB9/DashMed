@@ -5,17 +5,12 @@
  *
  * Permet à l'utilisateur de se connecter en saisissant son email et son mot de passe.
  * Le formulaire est sécurisé via un token CSRF. Affiche également les messages d'erreur ou de succès.
- * La page utilise la structure dynamique avec head, header et footer inclus.
  *
- * Variables dynamiques :
+ * Variables :
  * - $csrf_token (string)  Token CSRF pour sécuriser le formulaire
  * - $errors     (array)   Liste des erreurs de saisie
  * - $success    (string)  Message de succès
  * - $old        (array)   Valeurs précédemment saisies (ex: email)
- * - $pageTitle       (string)  Titre de la page
- * - $pageDescription (string)  Description pour les métadonnées
- * - $pageStyles      (array)   Styles CSS spécifiques
- * - $pageScripts     (array)   Scripts JS spécifiques
  *
  * @package DashMed
  * @version 1.0
@@ -27,10 +22,47 @@ $csrf_token = Csrf::token();
 ?>
 <!doctype html>
 <html lang="fr">
-<?php include __DIR__ . '/partials/head.php'; ?>
-<body>
-<?php include __DIR__ . '/partials/header.php'; ?>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Connectez-vous à DashMed !">
+    <title>Connexion</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/style/authentication.css" />
+    <link rel="stylesheet" href="/assets/style/footer.css" />
+    <link rel="stylesheet" href="/assets/style/header.css" />
+    <link rel="stylesheet" href="/assets/style/body_main_container.css" />
+    <script src="/assets/script/header_responsive.js" defer></script>
+    <link rel="icon" href="/assets/images/logo.png">
+
+</head>
+<body>
+<header class="topbar">
+    <div class="container">
+        <div class="brand">
+            <img class="logo" src="/assets/images/logo.png" alt="logo">
+            <span class="brand-name">DashMed</span>
+        </div>
+
+        <nav class="mainnav" aria-label="Navigation principale">
+            <a href="/">Accueil</a>
+            <a href="/map">Plan du site</a>
+            <a href="/legal-notices">Mentions légales</a>
+        </nav>
+
+        <a href="/login" class="login-btn current">Connexion</a>
+
+        <button class="burger-menu" aria-label="Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
 
 <main class="main">
     <section class="hero">
@@ -72,6 +104,10 @@ $csrf_token = Csrf::token();
     </section>
 </main>
 
-<?php include __DIR__ . '/partials/footer.php'; ?>
+<footer class="footer">
+    <div class="container">
+        © 2025 DashMed. Tous droits réservés
+    </div>
+</footer>
 </body>
 </html>
