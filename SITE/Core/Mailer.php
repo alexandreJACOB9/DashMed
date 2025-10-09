@@ -34,4 +34,28 @@ final class Mailer
 
         return $ok;
     }
+    //envoie mail pour reset mdp
+    public static function sendPasswordResetEmail(string $to, string $displayName, string $resetUrl): bool
+    {
+        $from = 'no-reply@dashmed-site.alwaysdata.net'; // adapte à ton domaine
+        $subject = 'Réinitialisation de votre mot de passe';
+        $headers = [
+            'From: DashMed <' . $from . '>',
+            'Reply-To: ' . $from,
+            'MIME-Version: 1.0',
+            'Content-Type: text/html; charset=UTF-8',
+        ];
+        $safeName = htmlspecialchars($displayName, ENT_QUOTES, 'UTF-8');
+        $safeUrl  = htmlspecialchars($resetUrl, ENT_QUOTES, 'UTF-8');
+
+        $body = '<!doctype html><html><body>'
+            . "<p>Bonjour {$safeName},</p>"
+            . '<p>Vous avez demandé la réinitialisation de votre mot de passe. '
+            . 'Cliquez sur le lien ci-dessous (valable 60 minutes):</p>'
+            . "<p><a href=\"{$safeUrl}\">Réinitialiser mon mot de passe</a></p>"
+            . '<p>Si vous n’êtes pas à l’origine de cette demande, ignorez cet email ou contacter le services clients.</p>'
+            . '</body></html>';
+
+        return @mail($to, $subject, $body, implode("\r\n", $headers), '-f '.$from);
+    }
 }
