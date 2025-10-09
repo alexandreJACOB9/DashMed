@@ -28,9 +28,6 @@ if (is_file($autoLoader)) {
     });
 }
 
-// Inclure Csrf si besoin
-require_once $siteDir . '/Core/Csrf.php';
-
 use Controllers\AuthController;
 use Controllers\HomeController;
 use Controllers\MapController;
@@ -86,9 +83,9 @@ if ($path === '/forgotten-password' || $path === '/mot-de-passe-oublie') {
 
 // Inscription
 if ($path === '/register' || $path === '/inscription') {
-    $controller = new RegistrationController();
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') $controller->submit();
-    else $controller->show();
+    $controller = new AuthController();
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') $controller->register();
+    else $controller->showRegister();
     exit;
 }
 

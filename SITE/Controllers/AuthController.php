@@ -61,7 +61,6 @@ final class AuthController
                     $errors[] = 'Insertion échouée.';
                 }
             } catch (\Throwable $e) {
-                // error_log($e->getMessage());
                 $errors[] = 'Erreur base.';
             }
         }
@@ -111,9 +110,6 @@ final class AuthController
                 'email' => $user['email'],
                 'name'  => trim($first.' '.$last)
             ];
-            $_SESSION['user_id']    = (int)$user['user_id'];   // (optionnel si déjà dans user)
-            $_SESSION['user_email'] = $user['email'];
-            $_SESSION['user_name']  = trim($first.' '.$last);
             header('Location: /dashboard');
             exit;
         }
