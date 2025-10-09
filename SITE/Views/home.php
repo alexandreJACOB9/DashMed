@@ -1,7 +1,18 @@
+<!--
+    Fichier : index.php
+
+    Page d'accueil de l'application DashMed.
+    Présente le service et ses avantages, invite à l'inscription ou à la connexion.
+    La structure inclut l'en-tête (dupliqué ici), la navigation principale, une section héro, les fonctionnalités clés et le pied de page.
+
+    @package DashMed
+    @author  FABRE Alexis, GHEUX Théo, JACOB Alexandre, TAHA CHAOUI Amir, UYSUN Ali
+    @version 1.0
+-->
 <!doctype html>
 <html lang="fr">
 <?php
-<?php
+// Variables dynamiques transmises depuis le contrôleur
 $pageTitle = $pageTitle ?? "Accueil";
 $pageDescription = $pageDescription ?? "Page d'accueil de DashMed : votre tableau de bord santé simple et moderne pour la médecine";
 $pageStyles = $pageStyles ?? ["/assets/style/index.css"];
@@ -10,7 +21,6 @@ include __DIR__ . '/partials/head.php';
 ?>
 <body>
 <?php include __DIR__ . '/partials/header.php'; ?>
-
 <main>
     <section class="hero">
         <div class="container hero__inner">
