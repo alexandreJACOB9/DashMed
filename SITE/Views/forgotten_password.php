@@ -34,7 +34,7 @@
         <nav class="mainnav" aria-label="Navigation principale">
             <a href="/">Accueil</a>
             <a href="/map">Plan du site</a>
-            <a href="/legal">Mentions légales</a>
+            <a href="/legal-notices">Mentions légales</a>
         </nav>
 
         <a href="/login" class="login-btn">Connexion</a>
