@@ -147,10 +147,6 @@
         grid-template-columns: 1fr;
     }
 
-    .mainnav {
-        display: none;
-    }
-
     .topbar .container {
         justify-content: space-between;
     }
