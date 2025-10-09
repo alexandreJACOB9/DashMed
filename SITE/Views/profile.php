@@ -11,21 +11,13 @@ $last  = $parts[1] ?? '';
 ?>
 <!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>Profil</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="Consultez votre profil DashMed une fois connecter">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/style/body_main_container.css">
-    <link rel="stylesheet" href="/assets/style/header.css">
-    <link rel="stylesheet" href="/assets/style/footer.css">
-    <link rel="stylesheet" href="/assets/style/profile.css">
-    <script src="/assets/script/header_responsive.js" defer></script>
-    <link rel="icon" href="/assets/images/logo.png">
-</head>
+<?php
+$pageTitle = "Profil";
+$pageDescription = "Consultez votre profil DashMed une fois connecter";
+$pageStyles = ["/assets/style/profile.css"];
+$pageScripts = [];
+include __DIR__ . '/partials/head.php';
+?>
 <body>
 <header class="topbar">
     <div class="container">
@@ -82,10 +74,6 @@ $last  = $parts[1] ?? '';
     </div>
 </main>
 
-<footer class="footer">
-    <div class="container">
-        © 2025 DashMed. Tous droits réservés
-    </div>
-</footer>
+<?php include __DIR__ . '/partials/footer.php'; ?>
 </body>
 </html>
