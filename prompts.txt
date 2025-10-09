@@ -17,3 +17,11 @@ Théo:
 1) Voici le code d'un header en html. Implémente le sous forme de menu burger pour qu'il soit responsive sur téléphone.
 2) Peux-tu rendre ce code un peu plus responsive sur téléphone
 
+Alexandre:
+1) Peux tu me corriger mailer() ?"
+2) Lorsque j'essaie de me connecter ça me met erreur base sait tu trouver l'erreur ?
+3) Je ne recoit pas le mail de réinitialisation du mot de passe sais tu d'ou vient l'erreur je ne la trouve pas
+4) Aide moi à rédiger une fonction permettant de s'inscrire sur notre site internet en php dans le continuité de ce code
+5) Explique moi cette partie du code de register()
+6) Ecrit de la documentation de ce code
+7) Rédige moi des textes génératif (utiliser pour les mails notament)
