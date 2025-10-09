@@ -8,6 +8,7 @@ use Controllers\HomeController;
 use Controllers\LegalNoticesController;
 use Controllers\MapController;
 use Controllers\ProfileController;
+use Controllers\ResetPasswordController;
 
 final class Router
 {
