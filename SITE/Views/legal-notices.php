@@ -1,8 +1,19 @@
+<!--
+    Fichier : legal-notices.php
+
+    Page des mentions légales de l'application DashMed.
+    Fournit les informations réglementaires concernant l'éditeur, l'hébergement, la propriété intellectuelle, la confidentialité et la responsabilité.
+    La structure inclut le header (dupliqué ici), le contenu légal, et le pied de page inclus via partial.
+
+    @package DashMed
+    @author  FABRE Alexis, GHEUX Théo, JACOB Alexandre, TAHA CHAOUI Amir, UYSUN Ali
+    @version 1.0
+-->
 <!doctype html>
 <html lang="fr">
 <?php
 $pageTitle = "Mentions légales";
-$pageDescription = "Mentions légales de DashMed !";
+$pageDescription = "Toute les mentions légales de DashMed";
 $pageStyles = ["/assets/style/legal_notices.css"];
 $pageScripts = [];
 include __DIR__ . '/partials/head.php';
@@ -21,7 +32,8 @@ include __DIR__ . '/partials/head.php';
                 DashMed — Site vitrine et application web de suivi de santé.<br>
                 Responsable de la publication : Équipe DashMed :<br>
                 FABRE Alexis, GHEUX Théo, JACOB Alexandre, TAHA CHAOUI Amir & UYSUN Ali <br>
-                Contact: <a href="mailto:dashmed-site@alwaysdata.net">dashmed-site@alwaysdata.net</a>            </p>
+                Contact: <a href="mailto:dashmed-site@alwaysdata.net">dashmed-site@alwaysdata.net</a>
+            </p>
         </article>
 
         <article class="section">
