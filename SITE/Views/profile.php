@@ -72,12 +72,12 @@ $last  = $parts[1] ?? '';
                     <th scope="row">Adresse email</th>
                     <td class="email-cell">
                         <span><?= htmlspecialchars($user['email']) ?></span>
-                        <a class="btn-edit" href="/profile/edit">Modifier</a>
+                        <a class="btn-edit" href="">Modifier</a>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <a class="btn-delete">Supprimer mon compte</a>
+            <a class="btn-delete" href="">Supprimer mon compte</a>
         </div>
     </div>
 </main>

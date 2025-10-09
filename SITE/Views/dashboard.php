@@ -78,7 +78,7 @@ $activites = [
             </article>
 
             <!-- Bloc Activités -->
-            <aside class="panel panel-activity">
+            <aside class="panel-activity">
                 <h2 class="panel-title">Activités récentes</h2>
                 <ul class="activity-list">
                     <?php foreach ($activites as $a): ?>

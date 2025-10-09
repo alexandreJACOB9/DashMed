@@ -15,8 +15,8 @@
 }
 
 .panel {
-  background:#dedede;
-  border:1px solid #d8d8d8;
+  background:#f3f3f3;
+  border:1px solid #cecece;
   border-radius:15px;
   padding:16px 18px 22px;
   position:relative;
@@ -138,8 +138,8 @@
 }
 
 .quick-actions {
-  background:#dedede;
-  border:1px solid #d8d8d8;
+  background:#f3f3f3;
+  border:1px solid #cecece;
   border-radius:15px;
   padding:18px 18px 28px;
 }
