@@ -7,7 +7,6 @@ final class DashboardController {
             header('Location: /login');
             exit;
         }
-        // (Données éventuelles à préparer ici)
         require __DIR__ . '/../Views/dashboard.php';
     }
 }
