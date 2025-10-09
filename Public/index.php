@@ -103,12 +103,12 @@ if ($path === '/logout' || $path === '/deconnexion') {
     exit;
 }
 
-if ($path === '/dashboard') {
+if ($path === '/dashboard' || $path === '/tableau-de-bord') {
     (new \Controllers\DashboardController())->index();
     exit;
 }
 
-if ($path === '/profile') {
+if ($path === '/profile' || $path === '/profil') {
     (new \Controllers\ProfileController())->show();
     exit;
 }

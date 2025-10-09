@@ -19,6 +19,8 @@ final class Mailer
         $body = '<!doctype html><html><body>'
             . '<p>Bonjour ' . $safeName . ',</p>'
             . '<p>Bienvenue sur DashMed ! Votre compte a bien été créé.</p>'
+            . '<p>Vous pouvez dès à présent vous connecter et commencer à utiliser notre application pour gérer votre tableau de bord en toute simplicité.</p>'
+            . '<p>Si vous n’êtes pas à l’origine de cette inscription, ignorez ce message ou contactez le support.</p>'
             . '<p>À très vite,<br>L’équipe DashMed</p>'
             . '</body></html>';
 
