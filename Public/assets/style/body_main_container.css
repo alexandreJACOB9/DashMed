@@ -23,8 +23,6 @@ body {
     padding-top : 120px;
 }
 
-/* Layout */
-
 main {
     flex: 1;
     display: flex;
