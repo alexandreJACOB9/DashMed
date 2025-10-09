@@ -1,4 +1,28 @@
-<?php $csrf_token = \Core\Csrf::token(); ?>
+<?php /**
+ * Fichier : forgotten_password.php
+ *
+ * Page de réinitialisation du mot de passe utilisateur pour l'application DashMed.
+ * Permet à l'utilisateur de demander un lien de réinitialisation par email.
+ * Utilise la structure dynamique (head, header, footer) et sécurise le formulaire via un token CSRF.
+ *
+ * @package DashMed
+ * @version 1.1
+ * @author  FABRE Alexis, GHEUX Théo, JACOB Alexandre, TAHA CHAOUI Amir, UYSUN Ali
+ */
+
+// --- Génération du token CSRF ---
+$csrf_token = \Core\Csrf::token();
+
+// --- Variables dynamiques pour le template ---
+$pageTitle = "Mot de passe oublié";
+$pageDescription = "Page de mot de passe oublié, envoie un lien par mail pour le changer";
+$pageStyles = [
+    "/assets/style/forgotten_password.css"
+];
+$pageScripts = [
+    "/assets/script/header_responsive.js"
+];
+
 <!doctype html>
 ?>
 <!doctype html>
