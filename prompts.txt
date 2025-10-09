@@ -12,3 +12,6 @@ Amir:
 2) Aide-nous à comprendre cette erreur et à la corriger : Fatal error: Uncaught Error: Class "LoginController" not found in C:\Users\klint\Documents\Cours\BUT\BUT2\PHP\DashMed\Public\index.php:89 Stack trace: #0 {main} thrown in C:\Users\klint\Documents\Cours\BUT\BUT2\PHP\DashMed\Public\index.php on line 89
 3) Quels sont les risques de ne pas avoir de fichier .env ?
 4) J'ai créer la table users sur phpmyadmin via alwaysdata, esque le fichier database.sql sert toujours ?
+
+Théo:
+
