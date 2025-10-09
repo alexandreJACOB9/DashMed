@@ -27,7 +27,7 @@ $activites = [
   <link rel="stylesheet" href="/assets/style/header.css">
   <link rel="stylesheet" href="/assets/style/footer.css">
   <script src="/assets/script/header_responsive.js" defer></script>
-  <link rel="icon" href="/assets/images/icons/favicon.ico">
+  <link rel="icon" href="/assets/images/logo.png">
 </head>
 <body>
 <header class="topbar">
