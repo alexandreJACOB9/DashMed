@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/assets/style/header.css" />
     <link rel="stylesheet" href="/assets/style/body_main_container.css" />
     <script src="/assets/script/header_responsive.js" defer></script>
-    <link rel="icon" href="/assets/images/icons/favicon.ico">
+    <link rel="icon" href="/assets/images/logo.png">
     <style>
         .alert { padding: 12px 14px; border-radius: 6px; margin-bottom: 16px; }
         .alert-error { background:#fde2e1; color:#8b1a15; border:1px solid #f7b4b1; }
