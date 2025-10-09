@@ -19,6 +19,7 @@ $last  = $parts[1] ?? '';
     <link rel="stylesheet" href="/assets/style/header.css">
     <link rel="stylesheet" href="/assets/style/footer.css">
     <link rel="stylesheet" href="/assets/style/profile.css">
+    <link rel="icon" href="/assets/images/logo.png">
 </head>
 <body>
 <header class="topbar">
