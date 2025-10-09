@@ -6,7 +6,15 @@ if (empty($_SESSION['user'])) {
     header('Location: /login');
     exit;
 }
-
+// --- Variables dynamiques transmises au template ---
+$pageTitle = "Tableau de bord";
+$pageDescription = "Page du dashboard accessible une fois connecter, espace pour vorir l'activité et les informations des médecins";
+$pageStyles = [
+    "/assets/style/dashboard.css"
+];
+$pageScripts = [
+    "/assets/script/header_responsive.js"
+];
 // Exemple de données dynamiques
 $activites = [
     ["label" => "Rdv avec Dr. Smith", "date" => "03/12/2025"],
