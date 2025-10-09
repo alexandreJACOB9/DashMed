@@ -81,7 +81,7 @@ final class AuthController
          if (session_status() !== PHP_SESSION_ACTIVE) session_start();
     $errors = [];
     $success = '';
-    $email = trim((string)($_POST['email'] ?? ''));
+    $email = strtolower(trim((string)($_POST['email'] ?? '')));
     $password = (string)($_POST['password'] ?? '');
     $csrf = (string)($_POST['csrf_token'] ?? '');
     $old = ['email' => $email];
