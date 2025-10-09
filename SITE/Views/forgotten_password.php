@@ -23,7 +23,6 @@ $pageScripts = [
     "/assets/script/header_responsive.js"
 ];
 
-<!doctype html>
 ?>
 <!doctype html>
 <html lang="fr">
