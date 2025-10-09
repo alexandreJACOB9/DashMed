@@ -22,7 +22,7 @@ final class User
             'INSERT INTO users (name, last_name, email, password, created_at, updated_at)
              VALUES (?, ?, ?, ?, NOW(), NOW())'
         );
-        return $st->execute([$name, $lastName, $email, $hash]);
+        return $st->execute([$name, $lastName, strtolower(trim($email)), $hash]);
     }
 
     // Récupération pour la connexion
@@ -32,10 +32,10 @@ final class User
         $st = $pdo->prepare('
             SELECT user_id, name, last_name, email, password
             FROM users
-            WHERE email = ?
+            WHERE LOWER(email) = LOWER(?)
             LIMIT 1
         ');
-        $st->execute([$email]);
+        $st->execute([strtolower(trim($email))]);
         $user = $st->fetch(PDO::FETCH_ASSOC);
         return $user ?: null;
     }

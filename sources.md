@@ -1,16 +1,20 @@
 ## Sources utilisées lors de la réalisation du projet :
 
+1) Cours de Mickael Martin-Nevot
+
+2) https://github.com/moinal/LP2020
+
 ## Prompts IA réalisées lors de la réalisation du projet 
 
-1)Voici le projet de mon groupe, qui a pour but de créer un DashMed fonctionnel. Pour l’instant, nous nous concentrons sur l’inscription, la connexion et la reconnexion. Nous avons les moyens de relier une base de données au code, mais nous ne pouvons pas l’installer sur nos ordinateurs professionnels, pourquoi?
+1) Voici le projet de mon groupe, qui a pour but de créer un DashMed fonctionnel. Pour l’instant, nous nous concentrons sur l’inscription, la connexion et la reconnexion. Nous avons les moyens de relier une base de données au code, mais nous ne pouvons pas l’installer sur nos ordinateurs professionnels, pourquoi?
 
-2)J'aimerais que tu convertisses mon fichier html en un php, je ne veux pas que ça impacte le visuel ou les fonctionnalités. Voici l’index.php actuel.
+2) J'aimerais que tu convertisses mon fichier html en un php, je ne veux pas que ça impacte le visuel ou les fonctionnalités. Voici l’index.php actuel.
 
-3)J’ai rencontré un problème de redirection après la connexion : malgré l’authentification réussie, la page du tableau de bord (dashboard.php) ne se chargeait pas correctement, pourquoi ?
+3) J’ai rencontré un problème de redirection après la connexion : malgré l’authentification réussie, la page du tableau de bord (dashboard.php) ne se chargeait pas correctement, pourquoi ?
 
-4)Pourquoi le bouton deconnexion n'est pas placé à droite de header ?
+4) Pourquoi le bouton deconnexion n'est pas placé à droite de header ?
 
-5)Simplifie mon tableau de board en enlevant les boutons cliquables.
+5) Simplifie mon tableau de board en enlevant les boutons cliquables.
 
 6) A partir des images ci-jointes (correspondant à notre maquette figma), réalise un squelette des pages en html/css simple. 
 
@@ -24,7 +28,7 @@
 
 11) Peux-tu rendre ce code css un peu plus responsive sur téléphon
 
-12) Commnent corriger ce code pour garantir que le footer reste bien accroché en bas de page ? 
+12) Comment corriger ce code pour garantir que le footer reste bien accroché en bas de page ? 
 
 13) Peux tu me corriger mailer() ?"
    
