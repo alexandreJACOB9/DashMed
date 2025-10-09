@@ -5,7 +5,6 @@
  *
  * Affiche les informations de l'utilisateur connecté (nom, prénom, email) et propose
  * des actions sur le compte (modifier email, supprimer compte). Sécurisée via session utilisateur.
- * Utilise la structure dynamique avec head, header et footer inclus.
  *
  * Variables dynamiques :
  * - $pageTitle       (string)  Titre de la page
@@ -37,7 +36,28 @@ $pageScripts = [];
 include __DIR__ . '/partials/head.php';
 ?>
 <body>
-<?php include __DIR__ . '/partials/header.php'; ?>
+<header class="topbar">
+    <div class="container">
+        <div class="brand">
+            <img src="/assets/images/logo.png" alt="Logo" class="logo">
+            <span class="brand-name">DashMed</span>
+        </div>
+
+        <nav class="mainnav" aria-label="Navigation principale">
+            <a href="/dashboard">Accueil</a>
+            <a href="/profile" class="current">Profil</a>
+            <a href="/logout" class="nav-login">Déconnexion</a>
+        </nav>
+
+        <a href="/logout" class="login-btn">Déconnexion</a>
+
+        <button class="burger-menu" aria-label="Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
 
 <main>
     <div class="container">
