@@ -1,4 +1,3 @@
-/* Hero section */
 .hero {
     background: linear-gradient(180deg, #ffffff, #f8fbfd);
 }
@@ -28,7 +27,6 @@
     gap: 12px;
 }
 
-/* Buttons */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -63,7 +61,6 @@
     border-color: #cfd6df;
 }
 
-/* Illustrations Hero */
 .hero__illus {
     position: relative;
     height: 220px;
@@ -91,7 +88,6 @@
     right: 180px;
 }
 
-/* Features section */
 .features {
     padding: 34px 0;
 }
@@ -132,7 +128,6 @@
     font-size: 14px;
 }
 
-/* Responsive */
 @media (max-width: 900px) {
     .hero__inner {
         grid-template-columns: 1fr;
