@@ -14,8 +14,9 @@ Amir:
 4) J'ai créer la table users sur phpmyadmin via alwaysdata, esque le fichier database.sql sert toujours ?
 
 Théo:
-1) Voici le code d'un header en html. Implémente le sous forme de menu burger pour qu'il soit responsive sur téléphone.
-2) Peux-tu rendre ce code un peu plus responsive sur téléphone
+1) Voici le code d'un header en html. Implémente le sous forme de menu latéral pour qu'il soit responsive sur téléphone.
+2) Peux-tu rendre ce code css un peu plus responsive sur téléphone
+3) Commnent corriger ce code pour garantir que le footer reste bien accroché en bas de page ? 
 
 Alexandre:
 1) Peux tu me corriger mailer() ?"
