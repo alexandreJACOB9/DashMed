@@ -1,4 +1,4 @@
-Sources utilisées lors de la réalisation du projet :
+**Sources utilisées lors de la réalisation du projet :**
 
 Prompts IA réalisées lors de la réalisation du projet 
 
