@@ -15,5 +15,5 @@ Amir:
 
 Théo:
 1) Voici le code d'un header en html. Implémente le sous forme de menu burger pour qu'il soit responsive sur téléphone.
-
+2) Peux-tu rendre ce code un peu plus responsive sur téléphone
 
