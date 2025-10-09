@@ -35,8 +35,6 @@ $last  = $parts[1] ?? '';
 
         <nav class="mainnav" aria-label="Navigation principale">
             <a href="/dashboard">Accueil</a>
-            <a href="/map">Plan du site</a>
-            <a href="/legal-notices">Mentions légales</a>
             <a href="/profile" class="current">Profil</a>
             <a href="/logout" class="nav-login">Déconnexion</a>
         </nav>
