@@ -12,7 +12,7 @@
 
 5)Simplifie mon tableau de board en enlevant les boutons cliquables.
 
-6) A partir des images ci-jointes (correspondant à notre maquette figma), réalise un squelette des pages en html/css simple.
+6) A partir des images ci-jointes (correspondant à notre maquette figma), réalise un squelette des pages en html/css simple. 
 
 7) Aide-nous à comprendre cette erreur et à la corriger : Fatal error: Uncaught Error: Class "LoginController" not found in C:\Users\klint\Documents\Cours\BUT\BUT2\PHP\DashMed\Public\index.php:89 Stack trace: #0 {main} thrown in C:\Users\klint\Documents\Cours\BUT\BUT2\PHP\DashMed\Public\index.php on line 89
 
